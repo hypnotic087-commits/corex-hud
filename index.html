@@ -11,7 +11,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 15px;
-            overflow: hidden; /* Scrollbar permanently disabled */
+            overflow: hidden; 
         }
         .header {
             text-align: center;
@@ -23,9 +23,10 @@
             padding-bottom: 10px;
         }
         .grid {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
             gap: 12px; 
+            align-items: start; 
         }
         .category-container {
             width: 100%;
@@ -52,7 +53,7 @@
             display: none; 
             flex-direction: column;
             gap: 8px;
-            padding: 10px 10px 0 10px;
+            padding: 10px 0 0 0; 
         }
         .sub-btn {
             background: rgba(232, 232, 232, 0.1);
@@ -64,6 +65,7 @@
             letter-spacing: 1px;
             cursor: pointer;
             transition: background 0.2s;
+            width: 100%;
         }
         .sub-btn:hover {
             background: rgba(232, 232, 232, 0.3);
@@ -76,6 +78,14 @@
 
     <div class="grid">
         
+        <!-- NUDE (Moved to the first position) -->
+        <div class="category-container">
+            <button class="btn" onclick="toggleMenu('nude-menu')">Nude</button>
+            <div id="nude-menu" class="submenu">
+                <button class="sub-btn" onclick="sendToSL('Nude', 'Base')">Base</button>
+            </div>
+        </div>
+
         <!-- BASE -->
         <div class="category-container">
             <button class="btn" onclick="toggleMenu('base-menu')">Base</button>
@@ -119,14 +129,6 @@
             </div>
         </div>
 
-        <!-- NUDE -->
-        <div class="category-container">
-            <button class="btn" onclick="toggleMenu('nude-menu')">Nude</button>
-            <div id="nude-menu" class="submenu">
-                <button class="sub-btn" onclick="sendToSL('Nude', 'Base')">Base</button>
-            </div>
-        </div>
-
         <!-- PJS -->
         <div class="category-container">
             <button class="btn" onclick="toggleMenu('pjs-menu')">PJs</button>
@@ -135,7 +137,7 @@
             </div>
         </div>
 
-        <!-- ALT -->
+        <!-- ALT (Remains in the last position) -->
         <div class="category-container">
             <button class="btn" onclick="toggleMenu('alt-menu')">Alt</button>
             <div id="alt-menu" class="submenu">
