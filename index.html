@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            /* Links to the background image you upload to GitHub */
-            background-image: url('bg.jpg'); 
+            /* Links exactly to the image you just uploaded */
+            background-image: url('9ff85e9aea171b842a2bd0540b1f0054.jpg'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             
-            /* Adds a dark tint over the image so the white text stays readable */
-            background-color: rgba(15, 15, 15, 0.7); 
+            /* Adds a heavy dark tint and a slight blur so your white menus stay easily readable */
+            background-color: rgba(15, 15, 15, 0.75); 
             background-blend-mode: overlay;
+            backdrop-filter: blur(2px);
             
             color: #ffffff;
             font-family: 'Segoe UI Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -48,7 +49,6 @@
         /* THIN-BORDERED RECTANGULAR BUTTONS */
         .btn {
             width: 100%;
-            /* Adds a slight frosted glass look to the buttons themselves */
             background: rgba(255, 255, 255, 0.05); 
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.4); 
