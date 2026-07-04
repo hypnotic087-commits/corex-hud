@@ -21,6 +21,7 @@
             margin-bottom: 20px;
             border-bottom: 2px solid #E8E8E8;
             padding-bottom: 10px;
+            text-transform: uppercase;
         }
         .grid {
             display: grid;
@@ -55,6 +56,11 @@
             gap: 8px;
             padding: 10px 0 0 0; 
         }
+        .nested-submenu {
+            padding-left: 10px;
+            border-left: 1px dashed rgba(232, 232, 232, 0.5);
+            margin-top: 4px;
+        }
         .sub-btn {
             background: rgba(232, 232, 232, 0.1);
             border: 1px dashed #E8E8E8;
@@ -70,6 +76,13 @@
         .sub-btn:hover {
             background: rgba(232, 232, 232, 0.3);
         }
+        .remove-btn {
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+        .remove-btn:hover {
+            background: rgba(255, 107, 107, 0.15);
+        }
     </style>
 </head>
 <body>
@@ -78,71 +91,71 @@
 
     <div class="grid">
         
-        <!-- NUDE (Moved to the first position) -->
         <div class="category-container">
-            <button class="btn" onclick="toggleMenu('nude-menu')">Nude</button>
-            <div id="nude-menu" class="submenu">
-                <button class="sub-btn" onclick="sendToSL('Nude', 'Base')">Base</button>
+            <button class="btn" onclick="toggleMenu('dresser-menu')">Dresser</button>
+            <div id="dresser-menu" class="submenu main-submenu">
+                <button class="sub-btn" onclick="sendToSL('Dresser', 'Lounge')">Lounge</button>
+                <button class="sub-btn" onclick="sendToSL('Dresser', 'PJs')">PJ's</button>
+                <button class="sub-btn" onclick="sendToSL('Dresser', 'Swim')">Swim</button>
+                
+                <button class="sub-btn" onclick="toggleMenu('underwear-menu', true)">Underwear ►</button>
+                <div id="underwear-menu" class="submenu nested-submenu">
+                    <button class="sub-btn" onclick="sendToSL('Dresser/Underwear', 'Bras')">Bras</button>
+                    <button class="sub-btn" onclick="sendToSL('Dresser/Underwear', 'Panties')">Panties</button>
+                    <button class="sub-btn" onclick="sendToSL('Dresser/Underwear', 'Pasties')">Pasties</button>
+                    <button class="sub-btn" onclick="sendToSL('Dresser/Underwear', 'Boxers')">Boxers</button>
+                    <button class="sub-btn" onclick="sendToSL('Dresser/Underwear', 'Briefs')">Briefs</button>
+                    <button class="sub-btn remove-btn" onclick="sendToSL('System', 'RemoveLast')">Remove</button>
+                </div>
+                
+                <button class="sub-btn remove-btn" onclick="sendToSL('System', 'RemoveLast')">Remove</button>
             </div>
         </div>
 
-        <!-- BASE -->
         <div class="category-container">
-            <button class="btn" onclick="toggleMenu('base-menu')">Base</button>
-            <div id="base-menu" class="submenu">
-                <button class="sub-btn" onclick="sendToSL('Base', 'Slot 1')">Slot 1</button>
+            <button class="btn" onclick="toggleMenu('closet-menu')">Closet</button>
+            <div id="closet-menu" class="submenu main-submenu">
+                <button class="sub-btn" onclick="sendToSL('Closet', 'Shirts')">Shirts</button>
+                <button class="sub-btn" onclick="sendToSL('Closet', 'Pants')">Pants</button>
+                <button class="sub-btn" onclick="sendToSL('Closet', 'Shorts')">Shorts</button>
+                <button class="sub-btn" onclick="sendToSL('Closet', 'Skirts')">Skirts</button>
+                <button class="sub-btn" onclick="sendToSL('Closet', 'Tank Tops')">Tank Tops</button>
+                <button class="sub-btn" onclick="sendToSL('Closet', 'Sweaters')">Sweaters</button>
+                <button class="sub-btn remove-btn" onclick="sendToSL('System', 'RemoveLast')">Remove</button>
             </div>
         </div>
 
-        <!-- CASUAL -->
         <div class="category-container">
-            <button class="btn" onclick="toggleMenu('casual-menu')">Casual</button>
-            <div id="casual-menu" class="submenu">
-                <button class="sub-btn" onclick="sendToSL('Casual', 'Slot 1')">Slot 1</button>
-                <button class="sub-btn" onclick="sendToSL('Casual', 'Slot 2')">Slot 2</button>
-                <button class="sub-btn" onclick="sendToSL('Casual', 'Slot 3')">Slot 3</button>
+            <button class="btn" onclick="toggleMenu('wardrobe-menu')">Wardrobe</button>
+            <div id="wardrobe-menu" class="submenu main-submenu">
+                <button class="sub-btn" onclick="sendToSL('Wardrobe', 'Casual')">Casual</button>
+                <button class="sub-btn" onclick="sendToSL('Wardrobe', 'Club')">Club</button>
+                <button class="sub-btn" onclick="sendToSL('Wardrobe', 'Formal')">Formal</button>
+                <button class="sub-btn" onclick="sendToSL('Wardrobe', 'Shopping')">Shopping</button>
+                <button class="sub-btn" onclick="sendToSL('Wardrobe', 'Sleep')">Sleep</button>
+                <button class="sub-btn" onclick="sendToSL('Wardrobe', 'Roleplay')">Roleplay</button>
+                <button class="sub-btn remove-btn" onclick="sendToSL('System', 'RemoveLast')">Remove</button>
             </div>
         </div>
 
-        <!-- FORMAL -->
         <div class="category-container">
-            <button class="btn" onclick="toggleMenu('formal-menu')">Formal</button>
-            <div id="formal-menu" class="submenu">
-                <button class="sub-btn" onclick="sendToSL('Formal', 'Slot 1')">Slot 1</button>
-                <button class="sub-btn" onclick="sendToSL('Formal', 'Slot 2')">Slot 2</button>
+            <button class="btn" onclick="toggleMenu('shoe-menu')">Shoe Rack</button>
+            <div id="shoe-menu" class="submenu main-submenu">
+                <button class="sub-btn" onclick="sendToSL('Shoe Rack', 'Boots')">Boots</button>
+                <button class="sub-btn" onclick="sendToSL('Shoe Rack', 'Dress Shoes')">Dress Shoes</button>
+                <button class="sub-btn" onclick="sendToSL('Shoe Rack', 'Heels')">Heels</button>
+                <button class="sub-btn" onclick="sendToSL('Shoe Rack', 'Sneakers')">Sneakers</button>
+                <button class="sub-btn" onclick="sendToSL('Shoe Rack', 'Sandals')">Sandals</button>
+                <button class="sub-btn remove-btn" onclick="sendToSL('System', 'RemoveLast')">Remove</button>
             </div>
         </div>
 
-        <!-- CLUB -->
         <div class="category-container">
-            <button class="btn" onclick="toggleMenu('club-menu')">Club</button>
-            <div id="club-menu" class="submenu">
-                <button class="sub-btn" onclick="sendToSL('Club', 'Slot 1')">Slot 1</button>
-            </div>
+            <button class="btn" onclick="sendToSL('System', 'Nude')">Nude</button>
         </div>
-
-        <!-- LOUNGE -->
+        
         <div class="category-container">
-            <button class="btn" onclick="toggleMenu('lounge-menu')">Lounge</button>
-            <div id="lounge-menu" class="submenu">
-                <button class="sub-btn" onclick="sendToSL('Lounge', 'Slot 1')">Slot 1</button>
-            </div>
-        </div>
-
-        <!-- PJS -->
-        <div class="category-container">
-            <button class="btn" onclick="toggleMenu('pjs-menu')">PJs</button>
-            <div id="pjs-menu" class="submenu">
-                <button class="sub-btn" onclick="sendToSL('PJs', 'Slot 1')">Slot 1</button>
-            </div>
-        </div>
-
-        <!-- ALT (Remains in the last position) -->
-        <div class="category-container">
-            <button class="btn" onclick="toggleMenu('alt-menu')">Alt</button>
-            <div id="alt-menu" class="submenu">
-                <button class="sub-btn" onclick="sendToSL('Alt', 'Slot 1')">Slot 1</button>
-            </div>
+            <button class="btn" onclick="sendToSL('System', 'Minimize')">Minimize</button>
         </div>
 
     </div>
@@ -151,13 +164,16 @@
         const urlParams = new URLSearchParams(window.location.search);
         const slurl = urlParams.get('slurl');
 
-        function toggleMenu(menuId) {
-            let allMenus = document.querySelectorAll('.submenu');
-            allMenus.forEach(menu => {
-                if (menu.id !== menuId) {
-                    menu.style.display = 'none';
-                }
-            });
+        function toggleMenu(menuId, isNested = false) {
+            // Only close other main menus if we are opening a main menu
+            if (!isNested) {
+                let allMenus = document.querySelectorAll('.main-submenu');
+                allMenus.forEach(menu => {
+                    if (menu.id !== menuId) {
+                        menu.style.display = 'none';
+                    }
+                });
+            }
 
             let selectedMenu = document.getElementById(menuId);
             if (selectedMenu.style.display === 'flex') {
@@ -184,4 +200,4 @@
     </script>
 
 </body>
-</html> 
+</html>
