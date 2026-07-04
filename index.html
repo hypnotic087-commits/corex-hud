@@ -15,7 +15,7 @@
         }
         .header {
             text-align: center;
-            font-size: 20px;
+            font-size: 26px; /* INCREASED FONT */
             font-weight: bold;
             letter-spacing: 3px;
             margin-bottom: 20px;
@@ -26,7 +26,7 @@
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr; 
-            gap: 12px; 
+            gap: 15px; /* Slightly increased gap for larger buttons */
             align-items: start; 
         }
         .category-container {
@@ -37,9 +37,9 @@
             background: transparent;
             border: 2px solid #E8E8E8; 
             color: #E8E8E8;
-            padding: 16px 0; 
+            padding: 20px 0; /* INCREASED PADDING */
             border-radius: 4px;
-            font-size: 16px; 
+            font-size: 20px; /* INCREASED FONT */
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -54,7 +54,7 @@
             display: none; 
             flex-direction: column;
             gap: 8px;
-            padding: 10px 0 0 0; 
+            padding: 12px 0 0 0; 
         }
         .nested-submenu {
             padding-left: 10px;
@@ -65,8 +65,8 @@
             background: rgba(232, 232, 232, 0.1);
             border: 1px dashed #E8E8E8;
             color: #E8E8E8;
-            padding: 14px 0; 
-            font-size: 14px; 
+            padding: 16px 0; /* INCREASED PADDING */
+            font-size: 16px; /* INCREASED FONT */
             text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
@@ -83,6 +83,21 @@
         .remove-btn:hover {
             background: rgba(255, 107, 107, 0.15);
         }
+        
+        /* NEW STYLES FOR THE MINIMIZE BUTTON */
+        .minimize-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .btn-minimize {
+            width: 70%; 
+            font-size: 14px; 
+            padding: 12px 0; 
+            border-width: 1px; 
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
@@ -91,6 +106,7 @@
 
     <div class="grid">
         
+        <!-- DRESSER -->
         <div class="category-container">
             <button class="btn" onclick="toggleMenu('dresser-menu')">Dresser</button>
             <div id="dresser-menu" class="submenu main-submenu">
@@ -98,6 +114,7 @@
                 <button class="sub-btn" onclick="sendToSL('Dresser', 'PJs')">PJ's</button>
                 <button class="sub-btn" onclick="sendToSL('Dresser', 'Swim')">Swim</button>
                 
+                <!-- Nested Underwear Menu -->
                 <button class="sub-btn" onclick="toggleMenu('underwear-menu', true)">Underwear ►</button>
                 <div id="underwear-menu" class="submenu nested-submenu">
                     <button class="sub-btn" onclick="sendToSL('Dresser/Underwear', 'Bras')">Bras</button>
@@ -112,6 +129,7 @@
             </div>
         </div>
 
+        <!-- CLOSET -->
         <div class="category-container">
             <button class="btn" onclick="toggleMenu('closet-menu')">Closet</button>
             <div id="closet-menu" class="submenu main-submenu">
@@ -125,6 +143,7 @@
             </div>
         </div>
 
+        <!-- WARDROBE -->
         <div class="category-container">
             <button class="btn" onclick="toggleMenu('wardrobe-menu')">Wardrobe</button>
             <div id="wardrobe-menu" class="submenu main-submenu">
@@ -138,6 +157,7 @@
             </div>
         </div>
 
+        <!-- SHOE RACK -->
         <div class="category-container">
             <button class="btn" onclick="toggleMenu('shoe-menu')">Shoe Rack</button>
             <div id="shoe-menu" class="submenu main-submenu">
@@ -150,12 +170,14 @@
             </div>
         </div>
 
+        <!-- NUDE -->
         <div class="category-container">
             <button class="btn" onclick="sendToSL('System', 'Nude')">Nude</button>
         </div>
         
-        <div class="category-container">
-            <button class="btn" onclick="sendToSL('System', 'Minimize')">Minimize</button>
+        <!-- MINIMIZE -->
+        <div class="category-container minimize-container">
+            <button class="btn btn-minimize" onclick="sendToSL('System', 'Minimize')">Minimize</button>
         </div>
 
     </div>
@@ -165,7 +187,6 @@
         const slurl = urlParams.get('slurl');
 
         function toggleMenu(menuId, isNested = false) {
-            // Only close other main menus if we are opening a main menu
             if (!isNested) {
                 let allMenus = document.querySelectorAll('.main-submenu');
                 allMenus.forEach(menu => {
