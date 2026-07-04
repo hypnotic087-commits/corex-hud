@@ -6,7 +6,6 @@
     <title>COREX // SYNC</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Forces the HTML to take up the full screen to eliminate the grey box */
         html, body {
             min-height: 100vh;
             margin: 0;
@@ -19,7 +18,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed; /* Locks the background so it never cuts off */
+            background-attachment: fixed; 
             
             background-color: rgba(15, 15, 15, 0.75); 
             background-blend-mode: overlay;
@@ -33,16 +32,15 @@
         
         .header {
             text-align: center;
-            font-size: 34px; /* Increased Font Size */
+            font-size: 38px; /* Increased Header Font */
             font-weight: 300; 
-            letter-spacing: 6px;
+            letter-spacing: 8px;
             margin-bottom: 25px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             padding-bottom: 15px;
             text-transform: uppercase;
         }
 
-        /* 3-Column Grid to force 6 items into exactly two rows */
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr; 
@@ -54,19 +52,18 @@
             width: 100%;
         }
 
-        /* MAIN BUTTONS */
         .btn {
             width: 100%;
             background: rgba(255, 255, 255, 0.05); 
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.4); 
             color: #ffffff;
-            padding: 20px 0; 
+            padding: 22px 0; 
             border-radius: 0px; 
-            font-size: 20px; /* Increased Font Size */
+            font-size: 22px; /* Increased Button Font */
             font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
@@ -75,7 +72,7 @@
         }
         .btn i {
             margin-right: 12px;
-            font-size: 20px; /* Increased Icon Size */
+            font-size: 22px; 
         }
         
         .btn:hover {
@@ -84,7 +81,6 @@
             border-color: rgba(220, 220, 220, 0.9);
         }
 
-        /* SUB-MENUS */
         .submenu {
             display: none; 
             flex-direction: column;
@@ -96,12 +92,12 @@
             background: rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.25);
             color: #cccccc;
-            padding: 16px 0; 
+            padding: 18px 0; 
             border-radius: 0px; 
-            font-size: 17px; /* Increased Font Size */
+            font-size: 18px; /* Increased Sub-Menu Font */
             font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             cursor: pointer;
             transition: all 0.2s;
             width: 100%;
@@ -132,19 +128,59 @@
         }
         .btn-minimize {
             width: 50%; 
-            font-size: 18px; 
-            padding: 18px 0; 
+            font-size: 20px; 
+            padding: 20px 0; 
             margin: 0 auto;
+        }
+
+        /* --- THE MINIMIZE FIX --- */
+        .maximize-view {
+            display: none; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            background: rgba(15, 15, 15, 0.85);
+            cursor: pointer;
+            text-align: center;
+        }
+        .maximize-view span {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 24px;
+            letter-spacing: 8px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* When the prim resizes below 250px, hide the main UI and show the Maximize button */
+        @media (max-width: 250px) {
+            .header, .grid, .minimize-container {
+                display: none !important;
+            }
+            .maximize-view {
+                display: flex !important;
+            }
+            body {
+                padding: 0;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- This view ONLY shows when the HUD is minimized -->
+    <div class="maximize-view" onclick="sendToSL('System', 'Maximize')">
+        <span>COREX</span>
+        <i class="fa-solid fa-expand" style="margin-top: 20px; color: #fff; font-size: 24px;"></i>
+    </div>
+
     <div class="header">COREX // SYNC</div>
 
     <div class="grid">
         
-        <!-- NUDE -->
+        <!-- NUDE (Forced to First Position) -->
         <div class="category-container">
             <button class="btn" onclick="toggleMenu('nude-menu')"><i class="fa-solid fa-user"></i> Nude</button>
             <div id="nude-menu" class="submenu main-submenu">
@@ -204,7 +240,7 @@
             </div>
         </div>
 
-        <!-- ALT -->
+        <!-- ALT (Forced to Last Position) -->
         <div class="category-container">
             <button class="btn" onclick="toggleMenu('alt-menu')"><i class="fa-solid fa-masks-theater"></i> Alt</button>
             <div id="alt-menu" class="submenu main-submenu">
@@ -218,7 +254,6 @@
 
     </div>
     
-    <!-- MINIMIZE (Separated from the grid to span across the bottom neatly) -->
     <div class="minimize-container">
         <button class="btn btn-minimize" onclick="sendToSL('System', 'Minimize')"><i class="fa-solid fa-compress"></i> Minimize</button>
     </div>
