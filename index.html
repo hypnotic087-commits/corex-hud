@@ -13,7 +13,7 @@
             font-family: 'Segoe UI', sans-serif; 
         }
         .hud-container { 
-            margin-top: 250px; /* Adjust this to move the HUD up/down */
+            margin-top: 250px; 
             background: rgba(40, 40, 40, 0.65); 
             backdrop-filter: blur(10px); 
             border: 1px solid rgba(255, 255, 255, 0.1); 
@@ -36,7 +36,9 @@
             font-size: 13px; 
             cursor: pointer; 
         }
-        .folder { margin-top: 15px; }
+        .nav-btn.active { background: rgba(255, 255, 255, 0.25); border-color: #fff; }
+        .folder { margin-top: 15px; display: none; }
+        .folder.show { display: block; }
         .header { 
             background: rgba(255, 255, 255, 0.05); 
             border: 1px solid rgba(255, 255, 255, 0.1); 
@@ -48,7 +50,7 @@
             margin-bottom: 10px; 
         }
         .content { display: none; padding-left: 20px; }
-        .show { display: block; }
+        .content.show { display: block; }
         .category { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; font-size: 14px; gap: 15px; }
         .slot-group { display: flex; flex: 1; gap: 5px; }
         .style-btn { flex: 1; height: 30px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; }
@@ -59,22 +61,22 @@
 
 <div class="hud-container">
     <div class="nav-row">
-        <button class="nav-btn" onclick="toggle('nude-f')">Nude</button>
-        <button class="nav-btn" onclick="toggle('dresser-f')">Dresser</button>
-        <button class="nav-btn" onclick="toggle('closet-f')">Closet</button>
+        <button class="nav-btn" onclick="openFolder('nude-f', this)">Nude</button>
+        <button class="nav-btn" onclick="openFolder('dresser-f', this)">Dresser</button>
+        <button class="nav-btn" onclick="openFolder('closet-f', this)">Closet</button>
     </div>
     <div class="nav-row">
-        <button class="nav-btn" onclick="toggle('wardrobe-f')">Wardrobe</button>
+        <button class="nav-btn" onclick="openFolder('wardrobe-f', this)">Wardrobe</button>
         <button class="nav-btn">Minimize</button>
     </div>
 
-    <div id="nude-f" class="folder content">
+    <div id="nude-f" class="folder">
         <div class="category"><span>Nude</span><div class="slot-group"><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button></div></div>
         <button class="remove-btn">Remove Last Attachment</button>
     </div>
 
-    <div id="dresser-f" class="folder content">
-        <div class="header" onclick="toggle('undies-f')">Undies ▼</div>
+    <div id="dresser-f" class="folder">
+        <div class="header" onclick="toggleSub('undies-f')">Undies ▼</div>
         <div id="undies-f" class="content">
             <div class="category"><span>Bra's</span><div class="slot-group"><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button></div></div>
             <div class="category"><span>Panties</span><div class="slot-group"><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button></div></div>
@@ -83,8 +85,8 @@
         <button class="remove-btn">Remove Last Attachment</button>
     </div>
 
-    <div id="closet-f" class="folder content">
-        <div class="header" onclick="toggle('shirts-f')">Shirts ▼</div>
+    <div id="closet-f" class="folder">
+        <div class="header" onclick="toggleSub('shirts-f')">Shirts ▼</div>
         <div id="shirts-f" class="content">
             <div class="category"><span>Long Sleeve</span><div class="slot-group"><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button></div></div>
         </div>
@@ -92,13 +94,21 @@
         <button class="remove-btn">Remove Last Attachment</button>
     </div>
 
-    <div id="wardrobe-f" class="folder content">
+    <div id="wardrobe-f" class="folder">
         <div class="category"><span>Casual</span><div class="slot-group"><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button><button class="style-btn"></button></div></div>
         <button class="remove-btn">Remove Last Attachment</button>
     </div>
 </div>
+
 <script>
-    function toggle(id) { document.getElementById(id).classList.toggle('show'); }
+    function openFolder(id, btn) {
+        document.querySelectorAll('.folder').forEach(f => f.classList.remove('show'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('show');
+        btn.classList.add('active');
+    }
+    function toggleSub(id) { document.getElementById(id).classList.toggle('show'); }
 </script>
+
 </body>
-</html> 
+</html>
