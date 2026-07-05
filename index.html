@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>COREX // SYNC UI</title>
     <style>
-        /* Force total page coverage */
         html, body { 
             margin: 0; padding: 0; 
             width: 100%; height: 100vh;
@@ -14,7 +13,6 @@
             overflow: hidden;
         }
 
-        /* HUD resized to cover full image area proportionally */
         .hud-container { 
             position: absolute;
             top: 50%; left: 50%;
@@ -42,9 +40,9 @@
         .sub-content { display: none; padding-left: 30px; background: rgba(0,0,0,0.1); }
         .sub-content.show { display: block; }
         
-        /* Style Slots container (hidden by default) */
-        .style-slots { display: none; padding: 15px; background: rgba(255,255,255,0.05); margin: 10px 0 10px 30px; border: 1px solid rgba(255,255,255,0.1); }
-        .style-slots.show { display: flex; gap: 8px; }
+        /* Style Slots container */
+        .style-slots { display: none; padding: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); margin-top: 5px; }
+        .style-slots.active { display: flex; gap: 8px; }
 
         .cat-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; font-size: 16px; cursor: pointer; }
         .rect-btn { width: 35px; height: 30px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; margin-left: 8px; }
@@ -64,21 +62,22 @@
             <button class="nav-btn">Minimize</button>
         </div>
 
-        <!-- CLOSET (Shirts and Dresses swapped) -->
+        <!-- CLOSET -->
         <div id="closet-f" class="folder">
             <div class="header" onclick="toggleSub('shirts-sub')">Shirts ▼</div>
             <div id="shirts-sub" class="sub-content">
-                <div class="cat-row" onclick="showSlots()"><span>Long Sleeve</span></div>
-                <div class="cat-row" onclick="showSlots()"><span>Short Sleeve</span></div>
+                <div class="cat-row" onclick="moveSlots(this)"><span>Long Sleeve</span></div>
+                <div class="cat-row" onclick="moveSlots(this)"><span>Short Sleeve</span></div>
             </div>
-            <div class="cat-row" onclick="showSlots()"><span>Dresses</span></div>
+            <div class="cat-row" onclick="moveSlots(this)"><span>Dresses</span></div>
             
-            <!-- Style Slots Area (Populates when category is clicked) -->
-            <div id="style-slots-area" class="style-slots">
-                <button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button>
-            </div>
             <button class="remove-btn">Remove Last Attachment</button>
         </div>
+    </div>
+
+    <!-- The single slot area that moves dynamically -->
+    <div id="style-slots-area" class="style-slots">
+        <button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button>
     </div>
 
     <script>
@@ -88,10 +87,11 @@
         }
         function toggleSub(id) { document.getElementById(id).classList.toggle('show'); }
         
-        // Function to show slots when sub category is picked
-        function showSlots() {
-            const slotArea = document.getElementById('style-slots-area');
-            slotArea.classList.add('show');
+        function moveSlots(element) {
+            const slots = document.getElementById('style-slots-area');
+            // Move the slots right after the clicked category
+            element.after(slots);
+            slots.classList.add('active');
         }
     </script>
 </body>
