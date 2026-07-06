@@ -8,7 +8,6 @@
         html, body { margin: 0; padding: 0; width: 100%; height: 100vh; background: url('closet.jpg') no-repeat center center !important; background-size: cover !important; font-family: 'Montserrat', sans-serif; overflow: hidden; color: #ffffff; }
         
         .hud-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            /* Dark grey with 25% opacity (75% transparency) */
             background: rgba(30, 30, 30, 0.25) !important; backdrop-filter: blur(20px); 
             border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; 
             padding: 30px; width: 85%; height: 85%; overflow-y: auto; display: flex; gap: 40px; }
@@ -33,10 +32,10 @@
         .sub-content { display: none; padding-left: 20px; }
         .sub-content.show { display: block; }
         
-        /* Category row and slots */
-        .cat-container { display: flex; align-items: center; gap: 15px; margin: 10px 0; }
-        .cat-row { padding: 12px; cursor: pointer; border: 1px solid transparent; font-weight: 300; letter-spacing: 1px; font-size: 24px; min-width: 150px; }
-        .slot-small { width: 40px; height: 40px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; }
+        .cat-container { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+        .cat-row { padding: 8px; cursor: pointer; border: 1px solid transparent; font-weight: 300; letter-spacing: 1px; font-size: 18px; min-width: 140px; }
+        .slot-grid { display: flex; gap: 5px; }
+        .slot-small { width: 30px; height: 35px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; }
         
         .remove-btn { margin-top: 20px; background: rgba(180, 60, 60, 0.3); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 12px; width: 100%; text-transform: uppercase; font-weight: 300; cursor: pointer; letter-spacing: 1px; font-size: 24px; }
     </style>
@@ -56,17 +55,17 @@
 
     <div class="content-column">
         <div id="nude-f" class="folder">
-            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Nude Options</div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
+            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Nude Options</div><div class="slot-grid"><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div></div>
         </div>
         
         <div id="dresser-f" class="folder">
-            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Pj's</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
-            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Lounge</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
-            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Swim</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
+            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Pj's</div><div class="slot-grid"><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div></div>
+            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Lounge</div><div class="slot-grid"><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div></div>
+            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Swim</div><div class="slot-grid"><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div></div>
             <div class="header" onclick="toggleSub('undies-sub', this)">Undies ▼</div>
             <div id="undies-sub" class="sub-content">
-                <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Bra's</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
-                <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Panties</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
+                <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Bra's</div><div class="slot-grid"><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div></div>
+                <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Panties</div><div class="slot-grid"><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div></div>
             </div>
             <button class="remove-btn" onclick="flashGlow(this)">Remove Last Attachment</button>
         </div>
@@ -74,23 +73,18 @@
         <div id="closet-f" class="folder">
             <div class="header" onclick="toggleSub('shirts-sub', this)">Shirts ▼</div>
             <div id="shirts-sub" class="sub-content">
-                <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Long Sleeve</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
-                <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Short Sleeve</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
+                <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Long Sleeve</div><div class="slot-grid"><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div></div>
             </div>
-            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Dresses</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
-            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Pants</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
-            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Skirts</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
+            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Dresses</div><div class="slot-grid"><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div></div>
             <button class="remove-btn" onclick="flashGlow(this)">Remove Last Attachment</button>
         </div>
         
         <div id="wardrobe-f" class="folder">
             <div class="header" onclick="toggleSub('seasons-sub', this)">Seasons ▼</div>
             <div id="seasons-sub" class="sub-content">
-                <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Spring</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
-                <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Summer</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
+                <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Spring</div><div class="slot-grid"><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div></div>
             </div>
-            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Casual</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
-            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Club</div><div class="slot-small" onclick="toggleGlow(this)"></div></div>
+            <div class="cat-container"><div class="cat-row" onclick="toggleGlow(this)">Casual</div><div class="slot-grid"><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div><div class="slot-small" onclick="toggleGlow(this)"></div></div></div>
             <button class="remove-btn" onclick="flashGlow(this)">Remove Last Attachment</button>
         </div>
     </div>
