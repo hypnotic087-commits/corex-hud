@@ -30,8 +30,10 @@
 
         .hud-container::-webkit-scrollbar { display: none; }
 
+        /* Strict Two-Row Grid */
         .nav-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
-        .row { display: flex; gap: 15px; width: 100%; }
+        .nav-row { display: flex; gap: 15px; width: 100%; }
+        
         .nav-btn { 
             background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); 
             color: #ffffff; padding: 25px; flex: 1; text-transform: uppercase; 
@@ -59,41 +61,19 @@
 <body>
 
     <div class="hud-container">
+        <!-- Two-Row Navigation Layout -->
         <div class="nav-grid">
-            <div class="row">
+            <div class="nav-row">
                 <button class="nav-btn" onclick="toggleFolder('nude-f', this)">Nude</button>
                 <button class="nav-btn" onclick="toggleFolder('dresser-f', this)">Dresser</button>
                 <button class="nav-btn" onclick="toggleFolder('closet-f', this)">Closet</button>
             </div>
-            <div class="row">
+            <div class="nav-row">
                 <button class="nav-btn" onclick="toggleFolder('wardrobe-f', this)">Wardrobe</button>
                 <button class="nav-btn" onclick="toggleGlow(this)">Minimize</button>
             </div>
         </div>
 
-        <!-- NUDE -->
-        <div id="nude-f" class="folder">
-            <div class="cat-row" onclick="selectRow(this)">Nude Style</div>
-        </div>
-
-        <!-- DRESSER -->
-        <div id="dresser-f" class="folder">
-            <div class="header" onclick="toggleSub('undies-sub')">Undies ▼</div>
-            <div id="undies-sub" class="sub-content">
-                <div class="cat-row" onclick="selectRow(this)">Bra's</div>
-                <div class="cat-row" onclick="selectRow(this)">Panties</div>
-                <div class="cat-row" onclick="selectRow(this)">Boxers</div>
-                <div class="cat-row" onclick="selectRow(this)">Briefs</div>
-                <div class="cat-row" onclick="selectRow(this)">Lingerie</div>
-                <div class="cat-row" onclick="selectRow(this)">Stocking and Socks</div>
-            </div>
-            <div class="cat-row" onclick="selectRow(this)">Pj's</div>
-            <div class="cat-row" onclick="selectRow(this)">Lounge</div>
-            <div class="cat-row" onclick="selectRow(this)">Swim</div>
-            <button class="remove-btn">Remove Last Attachment</button>
-        </div>
-
-        <!-- CLOSET -->
         <div id="closet-f" class="folder">
             <div class="header" onclick="toggleSub('shirts-sub')">Shirts ▼</div>
             <div id="shirts-sub" class="sub-content">
@@ -107,28 +87,8 @@
             <div class="cat-row" onclick="selectRow(this)">Shorts</div>
             <button class="remove-btn">Remove Last Attachment</button>
         </div>
-
-        <!-- WARDROBE -->
-        <div id="wardrobe-f" class="folder">
-            <div class="cat-row" onclick="selectRow(this)">Casual</div>
-            <div class="cat-row" onclick="selectRow(this)">Club</div>
-            <div class="cat-row" onclick="selectRow(this)">Formal</div>
-            <div class="cat-row" onclick="selectRow(this)">Sleep</div>
-            <div class="cat-row" onclick="selectRow(this)">Roleplay</div>
-            <div class="cat-row" onclick="selectRow(this)">Shopping</div>
-            <div class="cat-row" onclick="selectRow(this)">Swimwear</div>
-            <div class="header" onclick="toggleSub('seasons-sub')">Seasons ▼</div>
-            <div id="seasons-sub" class="sub-content">
-                <div class="cat-row" onclick="selectRow(this)">Spring</div>
-                <div class="cat-row" onclick="selectRow(this)">Summer</div>
-                <div class="cat-row" onclick="selectRow(this)">Winter</div>
-                <div class="cat-row" onclick="selectRow(this)">Autumn</div>
-            </div>
-            <button class="remove-btn">Remove Last Attachment</button>
-        </div>
     </div>
 
-    <!-- Style Slots -->
     <div id="style-slots-area" class="style-slots">
         <button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button><button class="rect-btn"></button>
     </div>
