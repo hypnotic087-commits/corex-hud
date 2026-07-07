@@ -7,26 +7,19 @@
     <style>
         html, body { margin: 0; padding: 0; width: 100%; height: 100vh; background: url('closet.jpg') no-repeat center center !important; background-size: cover !important; font-family: 'Montserrat', sans-serif; overflow: hidden; color: #ffffff; }
         .hud-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            background: rgba(30, 30, 30, 0.25) !important; backdrop-filter: blur(20px); 
+            background: rgba(30, 30, 30, 0.4); backdrop-filter: blur(20px); 
             border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; 
             padding: 30px; width: 85%; height: 85%; overflow-y: auto; display: flex; gap: 40px; }
-        .hud-container::-webkit-scrollbar { display: none; }
         .hud-title { position: absolute; top: 20px; left: 0; right: 0; text-align: center; font-size: 42px; font-weight: 300; text-transform: uppercase; letter-spacing: 8px; }
-        .nav-column { flex: 1; display: flex; flex-direction: column; gap: 30px; padding-top: 80px; }
-        .nav-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: #ffffff; padding: 15px; text-transform: uppercase; font-weight: 300; cursor: pointer; width: 100%; font-size: 22px; letter-spacing: 3px; font-family: 'Montserrat', sans-serif; }
-        .remove-hud-btn { margin-top: auto; background: rgba(180, 60, 60, 0.3) !important; border: 1px solid rgba(255, 255, 255, 0.2) !important; }
-        .glow-active { border: 2px solid #ffffff !important; box-shadow: 0 0 15px #ffffff !important; }
+        .nav-column { flex: 1; display: flex; flex-direction: column; gap: 20px; padding-top: 80px; }
+        .nav-btn { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 15px; text-transform: uppercase; cursor: pointer; }
         .content-column { flex: 2; padding-top: 80px; }
-        .folder { display: none; margin-top: 5px; }
-        .folder.show { display: block; }
-        .header { background: rgba(255, 255, 255, 0.05); padding: 15px; cursor: pointer; margin-top: 5px; text-transform: uppercase; font-weight: 300; letter-spacing: 1px; font-size: 24px; }
-        /* Forced visibility for debugging */
-        .sub-content { display: block !important; padding-left: 20px; }
-        .cat-container { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
-        .cat-row { padding: 8px; font-weight: 300; letter-spacing: 1px; font-size: 18px; min-width: 160px; }
-        .slot-grid { display: flex; gap: 5px; }
-        .slot-small { width: 30px; height: 35px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); cursor: pointer; }
-        .remove-btn { margin-top: 20px; background: rgba(180, 60, 60, 0.3); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 12px; width: 100%; text-transform: uppercase; font-weight: 300; cursor: pointer; letter-spacing: 1px; font-size: 24px; }
+        .folder { display: block; margin-top: 20px; border: 1px solid rgba(255, 255, 255, 0.1); padding: 10px; }
+        .header { cursor: pointer; padding: 10px; background: rgba(255, 255, 255, 0.1); text-transform: uppercase; font-weight: bold; }
+        .sub-content { display: block; padding-left: 20px; margin-top: 10px; }
+        .cat-container { display: flex; align-items: center; gap: 15px; margin: 10px 0; }
+        .slot-small { width: 30px; height: 30px; background: rgba(255, 255, 255, 0.2); cursor: pointer; border: 1px solid #fff; }
+        .remove-btn { margin-top: 20px; padding: 10px; background: rgba(180, 60, 60, 0.5); border: none; color: #fff; cursor: pointer; width: 100%; }
     </style>
 </head>
 <body>
@@ -34,61 +27,31 @@
 <div class="hud-container">
     <div class="hud-title">COREX // SYNC</div>
     <div class="nav-column">
-        <button class="nav-btn" onclick="handleNavClick('wardrobe-f', this)">Wardrobe</button>
-        <button class="nav-btn" onclick="handleNavClick('dresser-f', this)">Dresser</button>
-        <button class="nav-btn" onclick="handleNavClick('closet-f', this)">Closet</button>
-        <button class="nav-btn" onclick="handleNavClick('nude-f', this)">Nude</button>
-        <button class="nav-btn remove-hud-btn" onclick="flashGlow(this, 'remove_hud')">Remove HUD</button>
+        <button class="nav-btn" onclick="sendToHUD('open', 'wardrobe')">Wardrobe</button>
+        <button class="nav-btn" onclick="sendToHUD('open', 'dresser')">Dresser</button>
+        <button class="nav-btn" onclick="sendToHUD('open', 'closet')">Closet</button>
+        <button class="nav-btn" onclick="sendToHUD('open', 'nude')">Nude</button>
     </div>
 
     <div class="content-column">
-        <!-- Nude -->
-        <div id="nude-f" class="folder">
-            <div class="cat-container"><div class="cat-row">Nude Options</div><div class="slot-grid">
-                <div class="slot-small" onclick="flashGlow(this, 'load_style|nude|1')"></div>
-            </div></div>
-        </div>
-        
-        <!-- Dresser -->
         <div id="dresser-f" class="folder">
             <div class="header">Undies ▼</div>
-            <div id="undies-sub" class="sub-content">
-                <div class="cat-container"><div class="cat-row">Bra's</div><div class="slot-small" onclick="flashGlow(this, 'load_style|bras|1')"></div></div>
+            <div class="sub-content">
+                <div class="cat-container">
+                    <div>Bra's</div>
+                    <div class="slot-small" onclick="sendToHUD('load_style|bras|1')"></div>
+                </div>
             </div>
-            <button class="remove-btn" onclick="flashGlow(this, 'remove_last')">Remove Last Attachment</button>
-        </div>
-        
-        <!-- Closet -->
-        <div id="closet-f" class="folder">
-            <div class="header">Shirts ▼</div>
-            <div id="shirts-sub" class="sub-content">
-                <div class="cat-container"><div class="cat-row">Long Sleeve</div><div class="slot-small" onclick="flashGlow(this, 'load_style|longsleeve|1')"></div></div>
-            </div>
-        </div>
-        
-        <!-- Wardrobe -->
-        <div id="wardrobe-f" class="folder">
-            <div class="header">Seasons ▼</div>
-            <div id="seasons-sub" class="sub-content">
-                <div class="cat-container"><div class="cat-row">Spring</div><div class="slot-small" onclick="flashGlow(this, 'load_style|spring|1')"></div></div>
-            </div>
+            <button class="remove-btn" onclick="sendToHUD('remove_last')">Remove Last</button>
         </div>
     </div>
 </div>
 
 <script>
     const HUD_URL = "INSERT_YOUR_HUD_URL_HERE"; 
-    function sendToHUD(command) { fetch(HUD_URL, { method: 'POST', body: 'SYNC:' + command }); }
-    function handleNavClick(id, btn) { 
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('glow-active')); 
-        document.querySelectorAll('.folder').forEach(f => f.classList.remove('show')); 
-        btn.classList.add('glow-active'); 
-        document.getElementById(id).classList.add('show'); 
-    }
-    function flashGlow(btn, command) { 
-        btn.classList.add('glow-active'); 
-        if(command) sendToHUD(command);
-        setTimeout(() => { btn.classList.remove('glow-active'); }, 1000); 
+    function sendToHUD(action, cat) {
+        let cmd = cat ? action + '|' + cat : action;
+        fetch(HUD_URL, { method: 'POST', body: 'SYNC:' + cmd });
     }
 </script>
 </body>
