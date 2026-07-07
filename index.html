@@ -30,6 +30,7 @@
     </style>
 </head>
 <body>
+
 <div class="hud-container">
     <div class="hud-title">COREX // SYNC</div>
     <div class="nav-column">
@@ -37,20 +38,48 @@
         <button class="nav-btn" onclick="handleNavClick('dresser-f', this)">Dresser</button>
         <button class="nav-btn" onclick="handleNavClick('closet-f', this)">Closet</button>
         <button class="nav-btn" onclick="handleNavClick('nude-f', this)">Nude</button>
-        <button class="nav-btn remove-hud-btn" onclick="sendToHUD('REMOVE', 'HUD')">Remove HUD</button>
+        <button class="nav-btn remove-hud-btn" onclick="sendToHUD('REMOVE', 'ALL')">Remove HUD</button>
     </div>
+
     <div class="content-column">
-        <!-- Nude Folder Example -->
+        <!-- Nude -->
         <div id="nude-f" class="folder">
             <div class="cat-container"><div class="cat-row">Nude Options</div><div class="slot-grid">
                 <div class="slot-small" onclick="sendToHUD('WEAR', 'Nude')"></div>
             </div></div>
         </div>
-        <!-- Dresser and other folders follow same pattern -->
+        
+        <!-- Dresser -->
+        <div id="dresser-f" class="folder">
+            <div class="header" onclick="toggleSub('undies-sub', this)">Undies ▼</div>
+            <div id="undies-sub" class="sub-content">
+                <div class="cat-container"><div class="cat-row">Bra's</div><div class="slot-grid"><div class="slot-small" onclick="sendToHUD('WEAR', 'Bra')"></div></div></div>
+            </div>
+            <button class="remove-btn" onclick="sendToHUD('REMOVE', 'Undies')">Remove Undies</button>
+        </div>
+        
+        <!-- Closet -->
+        <div id="closet-f" class="folder">
+            <div class="header" onclick="toggleSub('shirts-sub', this)">Shirts ▼</div>
+            <div id="shirts-sub" class="sub-content">
+                <div class="cat-container"><div class="cat-row">Long Sleeve</div><div class="slot-grid"><div class="slot-small" onclick="sendToHUD('WEAR', 'LongSleeve')"></div></div></div>
+            </div>
+            <button class="remove-btn" onclick="sendToHUD('REMOVE', 'Shirts')">Remove Shirts</button>
+        </div>
+        
+        <!-- Wardrobe -->
+        <div id="wardrobe-f" class="folder">
+            <div class="header" onclick="toggleSub('seasons-sub', this)">Seasons ▼</div>
+            <div id="seasons-sub" class="sub-content">
+                <div class="cat-container"><div class="cat-row">Spring</div><div class="slot-grid"><div class="slot-small" onclick="sendToHUD('WEAR', 'Spring')"></div></div></div>
+            </div>
+            <button class="remove-btn" onclick="sendToHUD('REMOVE', 'Seasons')">Remove Seasons</button>
+        </div>
     </div>
 </div>
 
 <script>
+    // UPDATE THIS URL AFTER REZZING HUD
     const HUD_URL = "INSERT_YOUR_HUD_URL_HERE"; 
 
     function sendToHUD(action, category) {
@@ -58,17 +87,19 @@
             method: 'POST',
             body: 'SYNC:' + action + ':' + category
         });
+        // Visual feedback
         event.target.classList.add('glow-active');
         setTimeout(() => event.target.classList.remove('glow-active'), 1000);
     }
 
     function handleNavClick(id, btn) { 
         const folder = document.getElementById(id); 
-        const isCurrentlyActive = btn.classList.contains('glow-active'); 
         document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('glow-active')); 
         document.querySelectorAll('.folder').forEach(f => f.classList.remove('show')); 
-        if (!isCurrentlyActive) { btn.classList.add('glow-active'); folder.classList.add('show'); } 
+        btn.classList.add('glow-active'); 
+        folder.classList.add('show'); 
     }
+    
     function toggleSub(id, headerElement) { document.getElementById(id).classList.toggle('show'); }
 </script>
 </body>
