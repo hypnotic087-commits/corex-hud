@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <title>COREX Wardrobe Hud</title>
+    <title>COREX // SYNC</title>
     <style>
         html, body { margin: 0; padding: 0; width: 100%; height: 100vh; background: url('closet.jpg') no-repeat center center !important; background-size: cover !important; font-family: 'Montserrat', sans-serif; overflow: hidden; color: #ffffff; }
         
@@ -43,7 +43,7 @@
 <body>
 
 <div class="hud-container">
-    <div class="hud-title">COREX Wardrobe Hud</div>
+    <div class="hud-title">COREX // SYNC</div>
     
     <div class="nav-column">
         <button class="nav-btn" onclick="handleNavClick('wardrobe-f', this)">Wardrobe</button>
@@ -59,13 +59,12 @@
             <div class="cat-container">
                 <div class="cat-row">Nude Options</div>
                 <div class="slot-grid">
-                    <!-- Sending the command 'load_style|Folder_Path|Slot_Number' -->
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Nude|1')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Nude|2')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Nude|3')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Nude|4')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Nude|5')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Nude|6')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|nude|1')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|nude|2')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|nude|3')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|nude|4')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|nude|5')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|nude|6')"></div>
                 </div>
             </div>
         </div>
@@ -75,28 +74,26 @@
             <div class="cat-container">
                 <div class="cat-row">Pj's</div>
                 <div class="slot-grid">
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Pjs|1')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Pjs|2')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Pjs|3')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Pjs|4')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Pjs|5')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Pjs|6')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|pjs|1')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|pjs|2')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|pjs|3')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|pjs|4')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|pjs|5')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|pjs|6')"></div>
                 </div>
             </div>
-            <!-- Following the same pattern for Lounge... -->
             <div class="cat-container">
                 <div class="cat-row">Lounge</div>
                 <div class="slot-grid">
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Lounge|1')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Lounge|2')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Lounge|3')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Lounge|4')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Lounge|5')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Dresser/Lounge|6')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|lounge|1')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|lounge|2')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|lounge|3')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|lounge|4')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|lounge|5')"></div>
+                    <div class="slot-small" onclick="flashGlow(this, 'load_style|lounge|6')"></div>
                 </div>
             </div>
-            <!-- You will repeat this 'load_style|Category/SubCategory|X' for the rest of your slots below -->
-            <div class="cat-container"><div class="cat-row">Swimwear</div><div class="slot-grid"><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div></div></div>
+            <div class="cat-container"><div class="cat-row">Swimwear</div><div class="slot-grid"><div class="slot-small" onclick="flashGlow(this, 'load_style|swimwear|1')"></div><div class="slot-small" onclick="flashGlow(this, 'load_style|swimwear|2')"></div><div class="slot-small" onclick="flashGlow(this, 'load_style|swimwear|3')"></div><div class="slot-small" onclick="flashGlow(this, 'load_style|swimwear|4')"></div><div class="slot-small" onclick="flashGlow(this, 'load_style|swimwear|5')"></div><div class="slot-small" onclick="flashGlow(this, 'load_style|swimwear|6')"></div></div></div>
             <div class="header" onclick="toggleSub('undies-sub', this)">Undies ▼</div>
             <div id="undies-sub" class="sub-content">
                 <div class="cat-container"><div class="cat-row">Bra's</div><div class="slot-grid"><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div></div></div>
@@ -116,28 +113,8 @@
                 <div class="cat-container"><div class="cat-row">Short Sleeve</div><div class="slot-grid"><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div></div></div>
                 <div class="cat-container"><div class="cat-row">Tanks</div><div class="slot-grid"><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div></div></div>
             </div>
-            <div class="cat-container">
-                <div class="cat-row">Dresses</div>
-                <div class="slot-grid">
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Dresses|1')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Dresses|2')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Dresses|3')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Dresses|4')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Dresses|5')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Dresses|6')"></div>
-                </div>
-            </div>
-            <div class="cat-container">
-                <div class="cat-row">Pants</div>
-                <div class="slot-grid">
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Pants|1')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Pants|2')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Pants|3')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Pants|4')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Pants|5')"></div>
-                    <div class="slot-small" onclick="flashGlow(this, 'load_style|Closet/Pants|6')"></div>
-                </div>
-            </div>
+            <div class="cat-container"><div class="cat-row">Dresses</div><div class="slot-grid"><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div></div></div>
+            <div class="cat-container"><div class="cat-row">Pants</div><div class="slot-grid"><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div></div></div>
             <div class="cat-container"><div class="cat-row">Skirts</div><div class="slot-grid"><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div></div></div>
             <div class="cat-container"><div class="cat-row">Shorts</div><div class="slot-grid"><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div></div></div>
             <div class="cat-container"><div class="cat-row">Stockings</div><div class="slot-grid"><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div><div class="slot-small" onclick="flashGlow(this)"></div></div></div>
