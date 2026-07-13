@@ -3,79 +3,79 @@
 <head>
     <style>
         body { background: #111; color: #fff; font-family: sans-serif; text-align: center; padding: 10px; }
-        h2 { border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 5px; }
-        h3 { color: #aaa; margin-top: 15px; margin-bottom: 5px; font-size: 16px; }
-        .btn { display: block; width: 90%; margin: 4px auto; padding: 10px; background: #222; color: #fff; border: 1px solid #444; text-transform: uppercase; cursor: pointer; font-size: 12px; }
+        h2 { border-bottom: 2px solid #555; padding-bottom: 10px; color: #00d4ff; }
+        h3 { color: #aaa; margin: 15px 0 5px; font-size: 14px; text-transform: uppercase; }
+        .btn { display: block; width: 85%; margin: 3px auto; padding: 8px; background: #222; color: #fff; border: 1px solid #444; border-radius: 4px; cursor: pointer; font-size: 11px; }
         .btn:hover { background: #444; }
-        .sub-group { margin-bottom: 20px; }
+        details { background: #1a1a1a; margin: 10px 0; padding: 10px; border: 1px solid #333; border-radius: 5px; }
+        summary { cursor: pointer; font-weight: bold; padding: 5px; outline: none; }
     </style>
 </head>
 <body>
 
     <h2>Corex_Sync Wardrobe</h2>
+
     <form action="" method="POST">
-        <button type="submit" class="btn" name="cmd" value="Nude,remove">Nude</button>
+        <button type="submit" class="btn" style="background:#500;" name="cmd" value="Nude,remove">Nude</button>
     </form>
 
-    <div class="sub-group">
-        <h3>Dresser</h3>
+    <details>
+        <summary>DRESSER</summary>
+        <h3>Lounge</h3>
         <form action="" method="POST">
-            <button type="submit" class="btn" name="cmd" value="Dresser/Lounge,style1">Lounge</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Pj's,style1">Pj's</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Swimwear,style1">Swimwear</button>
+            <button type="submit" class="btn" name="cmd" value="Dresser/Lounge,style1">Style 1</button>
+            <button type="submit" class="btn" name="cmd" value="Dresser/Lounge,style2">Style 2</button>
+            <button type="submit" class="btn" name="cmd" value="Dresser/Lounge,style3">Style 3</button>
+            <button type="submit" class="btn" name="cmd" value="Dresser/Lounge,style4">Style 4</button>
+            <button type="submit" class="btn" name="cmd" value="Dresser/Lounge,style5">Style 5</button>
+            <button type="submit" class="btn" name="cmd" value="Dresser/Lounge,style6">Style 6</button>
         </form>
 
-        <h3>Undies</h3>
+        <h3>Undies (Sub-menu)</h3>
         <form action="" method="POST">
-            <p style="font-size:10px; color:#666;">Bra's</p>
+            <p style="font-size:9px; color:#666; margin:10px 0 2px;">BRA'S</p>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Bra's,style1">1</button>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Bra's,style2">2</button>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Bra's,style3">3</button>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Bra's,style4">4</button>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Bra's,style5">5</button>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Bra's,style6">6</button>
-
-            <p style="font-size:10px; color:#666;">Panties</p>
+            
+            <p style="font-size:9px; color:#666; margin:10px 0 2px;">PANTIES</p>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Panties,style1">1</button>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Panties,style2">2</button>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Panties,style3">3</button>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Panties,style4">4</button>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Panties,style5">5</button>
             <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Panties,style6">6</button>
-
-            <p style="font-size:10px; color:#666;">Boxers</p>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Boxers,style1">1</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Boxers,style2">2</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Boxers,style3">3</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Boxers,style4">4</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Boxers,style5">5</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Boxers,style6">6</button>
-
-            <p style="font-size:10px; color:#666;">Briefs</p>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Briefs,style1">1</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Briefs,style2">2</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Briefs,style3">3</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Briefs,style4">4</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Briefs,style5">5</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Briefs,style6">6</button>
-
-            <p style="font-size:10px; color:#666;">Stockings</p>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Stockings,style1">1</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Stockings,style2">2</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Stockings,style3">3</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Stockings,style4">4</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Stockings,style5">5</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Stockings,style6">6</button>
-
-            <p style="font-size:10px; color:#666;">Socks</p>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Socks,style1">1</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Socks,style2">2</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Socks,style3">3</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Socks,style4">4</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Socks,style5">5</button>
-            <button type="submit" class="btn" name="cmd" value="Dresser/Undies/Socks,style6">6</button>
         </form>
-    </div>
+    </details>
+
+    <details>
+        <summary>CLOSET</summary>
+        <h3>Dresses</h3>
+        <form action="" method="POST">
+            <button type="submit" class="btn" name="cmd" value="Closet/Dresses,style1">1</button>
+            <button type="submit" class="btn" name="cmd" value="Closet/Dresses,style2">2</button>
+            <button type="submit" class="btn" name="cmd" value="Closet/Dresses,style3">3</button>
+            <button type="submit" class="btn" name="cmd" value="Closet/Dresses,style4">4</button>
+            <button type="submit" class="btn" name="cmd" value="Closet/Dresses,style5">5</button>
+            <button type="submit" class="btn" name="cmd" value="Closet/Dresses,style6">6</button>
+        </form>
+    </details>
+
+    <details>
+        <summary>WARDROBE</summary>
+        <h3>Casual</h3>
+        <form action="" method="POST">
+            <button type="submit" class="btn" name="cmd" value="Wardrobe/Casual,style1">1</button>
+            <button type="submit" class="btn" name="cmd" value="Wardrobe/Casual,style2">2</button>
+            <button type="submit" class="btn" name="cmd" value="Wardrobe/Casual,style3">3</button>
+            <button type="submit" class="btn" name="cmd" value="Wardrobe/Casual,style4">4</button>
+            <button type="submit" class="btn" name="cmd" value="Wardrobe/Casual,style5">5</button>
+            <button type="submit" class="btn" name="cmd" value="Wardrobe/Casual,style6">6</button>
+        </form>
+    </details>
 
 </body>
 </html>
