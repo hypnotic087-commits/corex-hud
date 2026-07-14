@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-    body { background: #121212; color: #fff; font-family: sans-serif; padding: 10px; margin: 0; }
-    .menu-btn { display: block; width: 100%; background: #333; color: #fff; padding: 10px; margin: 2px 0; text-align: center; text-transform: uppercase; font-size: 10px; font-weight: bold; cursor: pointer; border: 1px solid #555; }
-    .content { display: none; padding: 10px; border: 1px solid #444; background: #1a1a1a; margin-bottom: 5px; }
-    .sub-cat { font-size: 11px; color: #aaa; margin-top: 8px; border-bottom: 1px solid #333; padding-bottom: 2px; }
-    .slot-btn { width: 30px; font-size: 9px; padding: 4px; background: #222; color: #fff; border: 1px solid #444; cursor: pointer; margin: 1px; }
-</style>
+    <style>
+        :root { --bg: #0f0f12; --panel: #1a1a1f; --accent: #00d4ff; --text: #e0e0e0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 15px; margin: 0; }
+        
+        h1 { font-size: 14px; text-align: center; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+        
+        /* Main Category Buttons */
+        .menu-btn { width: 100%; background: var(--panel); border: 1px solid #333; color: var(--text); padding: 12px; margin-bottom: 6px; text-transform: uppercase; font-size: 11px; font-weight: 600; cursor: pointer; transition: 0.3s; border-radius: 4px; }
+        .menu-btn:hover { border-color: var(--accent); background: #222; }
+        
+        /* Content Panels */
+        .content { display: none; padding: 12px; background: #141417; border-left: 2px solid var(--accent); margin-bottom: 10px; border-radius: 0 4px 4px 0; }
+        .sub-cat { font-size: 10px; color: #888; text-transform: uppercase; margin-bottom: 6px; margin-top: 10px; letter-spacing: 1px; }
+        
+        /* Buttons */
+        .slot-btn { width: 34px; height: 24px; font-size: 9px; font-weight: bold; background: #222; color: #aaa; border: 1px solid #333; cursor: pointer; margin: 2px; transition: 0.2s; }
+        .slot-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+        
+        /* Bottom Control Bar */
+        .controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 20px; }
+        .ctrl-btn { background: #1a1a1f; border: 1px solid #444; color: #888; padding: 8px; font-size: 9px; text-transform: uppercase; cursor: pointer; }
+    </style>
 </head>
 <body>
 
+    <h1>Corex_Sync</h1>
+    
     <button class="menu-btn" onclick="toggle('dresser')">Dresser</button>
     <div id="dresser" class="content"></div>
 
@@ -20,27 +37,17 @@
     <button class="menu-btn" onclick="toggle('wardrobe')">Wardrobe</button>
     <div id="wardrobe" class="content"></div>
 
+    <div class="controls">
+        <button class="ctrl-btn" onclick="send('Nude','remove')">Nude</button>
+        <button class="ctrl-btn" onclick="send('RemoveLast','detach')">Undo</button>
+        <button class="ctrl-btn" onclick="send('RemoveHud','detach')">Exit</button>
+    </div>
+
     <script>
-        // Setup all categories
         window.onload = function() {
-            addContent('dresser', [
-                ["Lounge", "Dresser/Lounge"], ["Pj's", "Dresser/Pj's"], ["Swimwear", "Dresser/Swimwear"],
-                ["Bra's", "Dresser/Undies/Bra's"], ["Panties", "Dresser/Undies/Panties"], ["Boxer/Briefs", "Dresser/Undies/BoxerBriefs"],
-                ["Lingerie", "Dresser/Undies/Lingerie"], ["Stockings", "Dresser/Undies/Stockings"], ["Socks", "Dresser/Undies/Socks"]
-            ]);
-            addContent('closet', [
-                ["Skirts", "Closet/Skirts"], ["Shorts", "Closet/Shorts"], ["Sweaters", "Closet/Sweaters"],
-                ["Long Dresses", "Closet/Dresses/Long"], ["Short Dresses", "Closet/Dresses/Short"], ["Dress Shirts", "Closet/Shirts/DressShirts"],
-                ["Long Sleeve", "Closet/Shirts/LongSleeve"], ["Short Sleeve", "Closet/Shirts/ShortSleeve"], ["Tanks/T's", "Closet/Shirts/TanksTs"],
-                ["Tube Tops", "Closet/Shirts/TubeTops"], ["Dress Pants", "Closet/Pants/DressPants"], ["Casual Pants", "Closet/Pants/Casual"],
-                ["Jeans", "Closet/Pants/Jeans"], ["Leggings", "Closet/Pants/Leggings"]
-            ]);
-            addContent('wardrobe', [
-                ["Casual", "Wardrobe/Casual"], ["Club", "Wardrobe/Club"], ["Shopping", "Wardrobe/Shopping"],
-                ["Sleep", "Wardrobe/Sleep"], ["Roleplay", "Wardrobe/Roleplay"], ["Gowns", "Wardrobe/Formal/Gowns"],
-                ["Suits", "Wardrobe/Formal/Suits"], ["Spring", "Wardrobe/Seasons/Spring"], ["Summer", "Wardrobe/Seasons/Summer"],
-                ["Fall", "Wardrobe/Seasons/Fall"], ["Winter", "Wardrobe/Seasons/Winter"]
-            ]);
+            addContent('dresser', [["Lounge", "Dresser/Lounge"], ["Pj's", "Dresser/Pj's"], ["Swimwear", "Dresser/Swimwear"], ["Bra's", "Dresser/Undies/Bra's"], ["Panties", "Dresser/Undies/Panties"], ["Boxer/Briefs", "Dresser/Undies/BoxerBriefs"], ["Lingerie", "Dresser/Undies/Lingerie"], ["Stockings", "Dresser/Undies/Stockings"], ["Socks", "Dresser/Undies/Socks"]]);
+            addContent('closet', [["Skirts", "Closet/Skirts"], ["Shorts", "Closet/Shorts"], ["Sweaters", "Closet/Sweaters"], ["Long Dresses", "Closet/Dresses/Long"], ["Short Dresses", "Closet/Dresses/Short"], ["Dress Shirts", "Closet/Shirts/DressShirts"], ["Long Sleeve", "Closet/Shirts/LongSleeve"], ["Short Sleeve", "Closet/Shirts/ShortSleeve"], ["Tanks/T's", "Closet/Shirts/TanksTs"], ["Tube Tops", "Closet/Shirts/TubeTops"], ["Dress Pants", "Closet/Pants/DressPants"], ["Casual Pants", "Closet/Pants/Casual"], ["Jeans", "Closet/Pants/Jeans"], ["Leggings", "Closet/Pants/Leggings"]]);
+            addContent('wardrobe', [["Casual", "Wardrobe/Casual"], ["Club", "Wardrobe/Club"], ["Shopping", "Wardrobe/Shopping"], ["Sleep", "Wardrobe/Sleep"], ["Roleplay", "Wardrobe/Roleplay"], ["Gowns", "Wardrobe/Formal/Gowns"], ["Suits", "Wardrobe/Formal/Suits"], ["Spring", "Wardrobe/Seasons/Spring"], ["Summer", "Wardrobe/Seasons/Summer"], ["Fall", "Wardrobe/Seasons/Fall"], ["Winter", "Wardrobe/Seasons/Winter"]]);
         };
 
         function addContent(id, items) {
@@ -53,12 +60,10 @@
                 container.innerHTML += html;
             });
         }
-
         function toggle(id) { 
             var el = document.getElementById(id);
             el.style.display = (el.style.display === 'block') ? 'none' : 'block'; 
         }
-
         function send(part, style) { 
             var f = document.getElementById('sl_form');
             f.action = window.location.hash.substring(1);
