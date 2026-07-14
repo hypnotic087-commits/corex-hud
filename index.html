@@ -3,7 +3,6 @@
 <head>
 <style>
     body { background: #121212; color: #fff; font-family: sans-serif; padding: 10px; margin: 0; }
-    h1 { text-align: center; font-size: 14px; color: #00d4ff; text-transform: uppercase; margin: 10px 0; }
     .menu-btn { display: block; width: 100%; background: #333; color: #fff; padding: 10px; margin: 2px 0; text-align: center; text-transform: uppercase; font-size: 10px; font-weight: bold; cursor: pointer; border: 1px solid #555; }
     .content { display: none; padding: 10px; border: 1px solid #444; background: #1a1a1a; margin-bottom: 5px; }
     .sub-cat { font-size: 11px; color: #aaa; margin-top: 8px; border-bottom: 1px solid #333; padding-bottom: 2px; }
@@ -12,57 +11,54 @@
 </head>
 <body>
 
-    <h1>Corex_Sync</h1>
-    
     <button class="menu-btn" onclick="toggle('dresser')">Dresser</button>
-    <div id="dresser" class="content">
-        <script>
-            create("Lounge", "Dresser/Lounge"); create("Pj's", "Dresser/Pj's");
-            create("Swimwear", "Dresser/Swimwear"); create("Bra's", "Dresser/Undies/Bra's");
-            create("Panties", "Dresser/Undies/Panties"); create("Boxer/Briefs", "Dresser/Undies/BoxerBriefs");
-            create("Lingerie", "Dresser/Undies/Lingerie"); create("Stockings", "Dresser/Undies/Stockings");
-            create("Socks", "Dresser/Undies/Socks");
-        </script>
-    </div>
+    <div id="dresser" class="content"></div>
 
     <button class="menu-btn" onclick="toggle('closet')">Closet</button>
-    <div id="closet" class="content">
-        <script>
-            create("Skirts", "Closet/Skirts"); create("Shorts", "Closet/Shorts");
-            create("Sweaters", "Closet/Sweaters"); create("Long Dresses", "Closet/Dresses/Long");
-            create("Short Dresses", "Closet/Dresses/Short"); create("Dress Shirts", "Closet/Shirts/DressShirts");
-            create("Long Sleeve", "Closet/Shirts/LongSleeve"); create("Short Sleeve", "Closet/Shirts/ShortSleeve");
-            create("Tanks/T's", "Closet/Shirts/TanksTs"); create("Tube Tops", "Closet/Shirts/TubeTops");
-            create("Dress Pants", "Closet/Pants/DressPants"); create("Casual Pants", "Closet/Pants/Casual");
-            create("Jeans", "Closet/Pants/Jeans"); create("Leggings", "Closet/Pants/Leggings");
-        </script>
-    </div>
+    <div id="closet" class="content"></div>
 
     <button class="menu-btn" onclick="toggle('wardrobe')">Wardrobe</button>
-    <div id="wardrobe" class="content">
-        <script>
-            create("Casual", "Wardrobe/Casual"); create("Club", "Wardrobe/Club");
-            create("Shopping", "Wardrobe/Shopping"); create("Sleep", "Wardrobe/Sleep");
-            create("Roleplay", "Wardrobe/Roleplay"); create("Gowns", "Wardrobe/Formal/Gowns");
-            create("Suits", "Wardrobe/Formal/Suits"); create("Spring", "Wardrobe/Seasons/Spring");
-            create("Summer", "Wardrobe/Seasons/Summer"); create("Fall", "Wardrobe/Seasons/Fall");
-            create("Winter", "Wardrobe/Seasons/Winter");
-        </script>
-    </div>
-
-    <button class="menu-btn" style="border-color:#ff4444;" onclick="send('Nude','remove')">Nude</button>
-    <button class="menu-btn" style="border-color:#ffcc00;" onclick="send('RemoveLast','detach')">Undo Last</button>
-    <button class="menu-btn" onclick="send('RemoveHud','detach')">Remove Hud</button>
+    <div id="wardrobe" class="content"></div>
 
     <script>
+        // Setup all categories
+        window.onload = function() {
+            addContent('dresser', [
+                ["Lounge", "Dresser/Lounge"], ["Pj's", "Dresser/Pj's"], ["Swimwear", "Dresser/Swimwear"],
+                ["Bra's", "Dresser/Undies/Bra's"], ["Panties", "Dresser/Undies/Panties"], ["Boxer/Briefs", "Dresser/Undies/BoxerBriefs"],
+                ["Lingerie", "Dresser/Undies/Lingerie"], ["Stockings", "Dresser/Undies/Stockings"], ["Socks", "Dresser/Undies/Socks"]
+            ]);
+            addContent('closet', [
+                ["Skirts", "Closet/Skirts"], ["Shorts", "Closet/Shorts"], ["Sweaters", "Closet/Sweaters"],
+                ["Long Dresses", "Closet/Dresses/Long"], ["Short Dresses", "Closet/Dresses/Short"], ["Dress Shirts", "Closet/Shirts/DressShirts"],
+                ["Long Sleeve", "Closet/Shirts/LongSleeve"], ["Short Sleeve", "Closet/Shirts/ShortSleeve"], ["Tanks/T's", "Closet/Shirts/TanksTs"],
+                ["Tube Tops", "Closet/Shirts/TubeTops"], ["Dress Pants", "Closet/Pants/DressPants"], ["Casual Pants", "Closet/Pants/Casual"],
+                ["Jeans", "Closet/Pants/Jeans"], ["Leggings", "Closet/Pants/Leggings"]
+            ]);
+            addContent('wardrobe', [
+                ["Casual", "Wardrobe/Casual"], ["Club", "Wardrobe/Club"], ["Shopping", "Wardrobe/Shopping"],
+                ["Sleep", "Wardrobe/Sleep"], ["Roleplay", "Wardrobe/Roleplay"], ["Gowns", "Wardrobe/Formal/Gowns"],
+                ["Suits", "Wardrobe/Formal/Suits"], ["Spring", "Wardrobe/Seasons/Spring"], ["Summer", "Wardrobe/Seasons/Summer"],
+                ["Fall", "Wardrobe/Seasons/Fall"], ["Winter", "Wardrobe/Seasons/Winter"]
+            ]);
+        };
+
+        function addContent(id, items) {
+            var container = document.getElementById(id);
+            items.forEach(function(item) {
+                var html = '<div class="sub-cat">' + item[0] + '</div>';
+                for(var i=1; i<=6; i++) {
+                    html += `<button class="slot-btn" onclick="send('${item[1]}','style${i}')">${i}</button>`;
+                }
+                container.innerHTML += html;
+            });
+        }
+
         function toggle(id) { 
             var el = document.getElementById(id);
             el.style.display = (el.style.display === 'block') ? 'none' : 'block'; 
         }
-        function create(n, p) { 
-            document.write('<div class="sub-cat">'+n+'</div>'); 
-            for(let i=1; i<=6; i++) document.write(`<button class="slot-btn" onclick="send('${p}','style${i}')">${i}</button>`); 
-        }
+
         function send(part, style) { 
             var f = document.getElementById('sl_form');
             f.action = window.location.hash.substring(1);
