@@ -16,7 +16,10 @@
 <body>
 
     <h1>Corex_Sync</h1>
-    <button class="btn" style="border-color:#ff4444; color:#ff4444;" onclick="sendCustomData(this, 'Nude', 'remove')">NUDE</button>
+    <div class="btn-container">
+        <button class="btn" style="border-color:#ff4444; color:#ff4444;" onclick="sendCustomData(this, 'Nude', 'remove')">NUDE</button>
+        <button class="btn" style="border-color:#ffcc00; color:#ffcc00;" onclick="sendCustomData(this, 'RemoveLast', 'detach')">REMOVE LAST</button>
+    </div>
 
     <h3>Dresser</h3>
     <div class="btn-container">
@@ -85,15 +88,8 @@
 
     <script>
         function sendCustomData(btn, part, style) {
-            // Robust URL finding: looks at hash, then falls back to current location
             let simUrl = window.location.hash.substring(1) || window.location.href.split('#')[1];
-            
-            if (!simUrl) { 
-                btn.innerText = "WAITING..."; 
-                setTimeout(() => location.reload(), 1000); 
-                return; 
-            }
-            
+            if (!simUrl) { btn.innerText = "WAITING..."; setTimeout(() => location.reload(), 1000); return; }
             const form = document.getElementById('sl_form');
             form.action = decodeURIComponent(simUrl);
             document.getElementById('payload_data').value = part + "," + style;
