@@ -4,19 +4,21 @@
     <style>
         :root { --glass: rgba(0, 0, 0, 0.7); --glow: 0 0 15px rgba(255, 255, 255, 0.6); }
         body { margin: 0; padding: 40px; font-family: 'Segoe UI', sans-serif; color: #fff; 
-               background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('closet.jpg'); 
+               background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://i.imgur.com/eBw0k7t.jpeg'); 
                background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; }
         .container { position: relative; z-index: 1; max-width: 800px; margin: 2% auto; background: rgba(0, 0, 0, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); }
         h1 { font-size: 20px; text-align: center; color: #fff; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 35px; text-shadow: 0 3px 6px rgba(0,0,0,0.7); cursor: pointer; }
         
-        /* Semi-transparent buttons */
-        .menu-btn, .sub-btn, .nude-btn { opacity: 0.7; transition: 0.3s; }
+        /* Transparent Black Buttons */
+        .menu-btn, .sub-btn, .nude-btn { 
+            width: 100%; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.2); 
+            color: #fff; padding: 15px; margin-bottom: 8px; text-transform: uppercase; 
+            font-size: 13px; font-weight: bold; cursor: pointer; border-radius: 6px; 
+            opacity: 0.7; transition: 0.3s; 
+        }
         .menu-btn:hover, .sub-btn:hover, .nude-btn:hover { opacity: 1; }
         
-        .menu-btn { width: 100%; background: var(--glass); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 20px; margin-bottom: 12px; text-transform: uppercase; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 6px; }
-        .sub-btn { width: 100%; background: rgba(255,255,255,0.1); border: 1px solid #555; color: #fff; padding: 15px; margin-bottom: 5px; font-size: 12px; cursor: pointer; text-transform: uppercase; }
-        
-        .active-glow { border-color: #fff !important; box-shadow: var(--glow) !important; background: rgba(255,255,255,0.2) !important; opacity: 1 !important; }
+        .active-glow { border-color: #fff !important; box-shadow: var(--glow) !important; opacity: 1 !important; }
         
         .slot-container { display: none; padding: 10px; text-align: center; }
         .slot-btn { width: 45px; height: 35px; font-size: 12px; background: rgba(0,0,0,0.6); color: #fff; border: 1px solid #777; cursor: pointer; margin: 3px; }
@@ -25,11 +27,8 @@
         .content { display: none; }
         .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
         
-        /* Non-transparent control buttons */
+        /* Opaque Control Buttons */
         .ctrl-btn { background: rgba(0,0,0,0.7); border: 1px solid #666; color: #fff; padding: 18px; font-size: 12px; cursor: pointer; border-radius: 4px; text-transform: uppercase; opacity: 1; }
-        
-        /* Black Nude button */
-        .nude-btn { width: 100%; background: #000; border: 1px solid #333; color: #fff; padding: 20px; margin-bottom: 12px; text-transform: uppercase; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 6px; }
     </style>
 </head>
 <body>
@@ -39,7 +38,6 @@
             <button class="menu-btn" onclick="showCategory('dresser')">Dresser</button>
             <button class="menu-btn" onclick="showCategory('closet')">Closet</button>
             <button class="menu-btn" onclick="showCategory('wardrobe')">Wardrobe</button>
-            
             <button class="nude-btn" onclick="toggleOnlySlots(this)">Nude</button>
             <div class="slot-container">
                 <button class="slot-btn" onclick="send('Nude','style1')">1</button>
