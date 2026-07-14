@@ -1,59 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Corex_Sync HUD</title>
-    <style>
-        body { background: #121212; color: #fff; font-family: sans-serif; padding: 10px; margin: 0; }
-        .main-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px; margin-bottom: 20px; }
-        .main-btn { background: #333; color: #fff; border: 1px solid #555; padding: 10px; cursor: pointer; font-size: 10px; font-weight: bold; }
-        .section { display: none; margin-top: 10px; border-top: 1px solid #444; padding-top: 10px; }
-        .btn-grid { display: grid; grid-template-columns: repeat(1, 1fr); gap: 5px; }
-        .slot-btn { width: 30px; font-size: 8px; padding: 5px; background: #222; color: #fff; border: 1px solid #444; cursor: pointer; margin-right: 2px; }
-    </style>
+<style>
+    body { background: #121212; color: #fff; font-family: sans-serif; padding: 10px; }
+    .menu-btn { display: block; width: 100%; background: #333; color: #fff; padding: 12px; margin: 5px 0; text-align: center; text-transform: uppercase; font-size: 12px; font-weight: bold; cursor: pointer; border: 1px solid #555; }
+    .content { display: none; padding: 10px; border: 1px solid #444; margin-bottom: 10px; background: #1a1a1a; }
+    .slot-btn { width: 30px; font-size: 10px; padding: 5px; background: #222; color: #fff; border: 1px solid #444; cursor: pointer; }
+</style>
 </head>
 <body>
-    <div class="main-nav">
-        <button class="main-btn" onclick="toggle('dresser')">Dresser</button>
-        <button class="main-btn" onclick="toggle('closet')">Closet</button>
-        <button class="main-btn" onclick="toggle('wardrobe')">Wardrobe</button>
-        <button class="main-btn" onclick="send('Nude', 'remove')">Nude</button>
+
+    <button class="menu-btn" onclick="document.getElementById('dresser').style.display = (document.getElementById('dresser').style.display === 'block' ? 'none' : 'block')">Dresser</button>
+    <div id="dresser" class="content">
+        <strong>Lounge</strong><br>
+        <button class="slot-btn" onclick="send('Dresser/Lounge','style1')">1</button>
+        <button class="slot-btn" onclick="send('Dresser/Lounge','style2')">2</button>
     </div>
 
-    <div id="dresser" class="section"><script>
-        create("Lounge", "Dresser/Lounge"); create("Pj's", "Dresser/Pj's");
-        create("Swimwear", "Dresser/Swimwear"); create("Bra's", "Dresser/Undies/Bra's");
-    </script></div>
-
-    <div id="closet" class="section"><script>
-        create("Skirts", "Closet/Skirts"); create("Shorts", "Closet/Shorts");
-    </script></div>
-
-    <div id="wardrobe" class="section"><script>
-        create("Casual", "Wardrobe/Casual"); create("Club", "Wardrobe/Club");
-    </script></div>
+    <button class="menu-btn" onclick="document.getElementById('closet').style.display = (document.getElementById('closet').style.display === 'block' ? 'none' : 'block')">Closet</button>
+    <div id="closet" class="content">
+        <strong>Skirts</strong><br>
+        <button class="slot-btn" onclick="send('Closet/Skirts','style1')">1</button>
+        <button class="slot-btn" onclick="send('Closet/Skirts','style2')">2</button>
+    </div>
 
     <script>
-        function toggle(id) {
-            var el = document.getElementById(id);
-            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
-        }
-        function create(n, p) { 
-            document.write('<div><small>'+n+'</small><br>'); 
-            for(let i=1; i<=6; i++) document.write(`<button class="slot-btn" onclick="send('${p}','style${i}')">${i}</button>`); 
-            document.write('</div>'); 
-        }
-        function send(part, style) { 
-            var simUrl = window.location.hash.substring(1);
-            var f = document.getElementById('sl_form');
-            f.action = decodeURIComponent(simUrl);
-            document.getElementById('p_data').value = part + "," + style;
-            f.submit();
+        function send(part, style) {
+            alert("Command Sent: " + part + "," + style);
         }
     </script>
-    <iframe name="secret_frame" style="display:none;"></iframe>
-    <form id="sl_form" method="POST" target="secret_frame" style="display:none;">
-        <input type="hidden" id="p_data" name="cmd">
-    </form>
 </body>
 </html>
