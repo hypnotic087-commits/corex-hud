@@ -3,11 +3,13 @@
 <head>
     <style>
         :root { --glass: rgba(0, 0, 0, 0.7); --glow: 0 0 15px rgba(255, 255, 255, 0.6); }
-        body { margin: 0; padding: 40px; font-family: 'Segoe UI', sans-serif; color: #fff; background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('closet.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; }
+        body { margin: 0; padding: 40px; font-family: 'Segoe UI', sans-serif; color: #fff; 
+               background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://i.imgur.com/eBw0k7t.jpeg'); 
+               background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; }
         .container { position: relative; z-index: 1; max-width: 800px; margin: 2% auto; background: rgba(0, 0, 0, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); }
         h1 { font-size: 20px; text-align: center; color: #fff; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 35px; text-shadow: 0 3px 6px rgba(0,0,0,0.7); cursor: pointer; }
         .menu-btn { width: 100%; background: var(--glass); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 20px; margin-bottom: 12px; text-transform: uppercase; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 6px; }
-        .sub-btn { width: 100%; background: rgba(255,255,255,0.1); border: 1px solid #555; color: #fff; padding: 15px; margin-bottom: 5px; font-size: 12px; cursor: pointer; }
+        .sub-btn { width: 100%; background: rgba(255,255,255,0.1); border: 1px solid #555; color: #fff; padding: 15px; margin-bottom: 5px; font-size: 12px; cursor: pointer; text-transform: uppercase; }
         .slot-container { display: none; padding: 10px; text-align: center; }
         .slot-btn { width: 45px; height: 35px; font-size: 12px; background: rgba(0,0,0,0.6); color: #fff; border: 1px solid #777; cursor: pointer; margin: 3px; }
         .slot-btn:hover { border-color: #fff; box-shadow: var(--glow); }
@@ -31,16 +33,28 @@
             <button class="nude-btn" onclick="send('Nude','remove')">Nude</button>
         </div>
         <div id="controls" class="controls">
-            <button class="ctrl-btn" onclick="history.back()">Back</button>
+            <button class="ctrl-btn" onclick="showHome()">Back</button>
             <button class="ctrl-btn" onclick="send('RemoveLast','detach')">Remove Last Item</button>
         </div>
     </div>
     <script>
-        // ... (Keep existing script block logic) ...
         window.onload = function() {
-            addCategory('dresser', [["Lounge", "Dresser/Lounge"], ["Pj's", "Dresser/Pj's"], ["Swimwear", "Dresser/Swimwear"], ["Undies", null, [["Bra's", "Dresser/Undies/Bra's"], ["Panties", "Dresser/Undies/Panties"], ["Boxer/Briefs", "Dresser/Undies/BoxerBriefs"], ["Lingerie", "Dresser/Undies/Lingerie"], ["Stockings", "Dresser/Undies/Stockings"], ["Socks", "Dresser/Undies/Socks"]]]]);
-            addCategory('closet', [["Skirts", "Closet/Skirts"], ["Shorts", "Closet/Shorts"], ["Sweaters", "Closet/Sweaters"], ["Long Dresses", "Closet/Dresses/Long"], ["Short Dresses", "Closet/Dresses/Short"], ["Dress Shirts", "Closet/Shirts/DressShirts"], ["Long Sleeve", "Closet/Shirts/LongSleeve"], ["Short Sleeve", "Closet/Shirts/ShortSleeve"], ["Tanks/T's", "Closet/Shirts/TanksTs"], ["Tube Tops", "Closet/Shirts/TubeTops"], ["Dress Pants", "Closet/Pants/DressPants"], ["Casual Pants", "Closet/Pants/Casual"], ["Jeans", "Closet/Pants/Jeans"], ["Leggings", "Closet/Pants/Leggings"]]);
-            addCategory('wardrobe', [["Casual", "Wardrobe/Casual"], ["Club", "Wardrobe/Club"], ["Shopping", "Wardrobe/Shopping"], ["Sleep", "Wardrobe/Sleep"], ["Roleplay", "Wardrobe/Roleplay"], ["Gowns", "Wardrobe/Formal/Gowns"], ["Suits", "Wardrobe/Formal/Suits"], ["Spring", "Wardrobe/Seasons/Spring"], ["Summer", "Wardrobe/Seasons/Summer"], ["Fall", "Wardrobe/Seasons/Fall"], ["Winter", "Wardrobe/Seasons/Winter"]]);
+            addCategory('dresser', [
+                ["Lounge", "Dresser/Lounge"], ["Pj's", "Dresser/Pj's"], ["Swimwear", "Dresser/Swimwear"],
+                ["Undies", null, [["Bra's", "Dresser/Undies/Bra's"], ["Panties", "Dresser/Undies/Panties"], ["Boxer/Briefs", "Dresser/Undies/BoxerBriefs"], ["Lingerie", "Dresser/Undies/Lingerie"], ["Stockings", "Dresser/Undies/Stockings"], ["Socks", "Dresser/Undies/Socks"]]]
+            ]);
+            addCategory('closet', [
+                ["Skirts", "Closet/Skirts"], ["Shorts", "Closet/Shorts"], ["Sweaters", "Closet/Sweaters"],
+                ["Dresses", null, [["Long", "Closet/Dresses/Long"], ["Short", "Closet/Dresses/Short"]]],
+                ["Shirts", null, [["Dress", "Closet/Shirts/DressShirts"], ["Long Sleeve", "Closet/Shirts/LongSleeve"], ["Short Sleeve", "Closet/Shirts/ShortSleeve"], ["Tanks/T's", "Closet/Shirts/TanksTs"], ["Tube Tops", "Closet/Shirts/TubeTops"]]],
+                ["Pants", null, [["Dress", "Closet/Pants/DressPants"], ["Casual", "Closet/Pants/Casual"], ["Jeans", "Closet/Pants/Jeans"], ["Leggings", "Closet/Pants/Leggings"]]]
+            ]);
+            addCategory('wardrobe', [
+                ["Casual", "Wardrobe/Casual"], ["Club", "Wardrobe/Club"], ["Shopping", "Wardrobe/Shopping"],
+                ["Sleep", "Wardrobe/Sleep"], ["Roleplay", "Wardrobe/Roleplay"],
+                ["Formal", null, [["Gowns", "Wardrobe/Formal/Gowns"], ["Suits", "Wardrobe/Formal/Suits"]]],
+                ["Seasons", null, [["Spring", "Wardrobe/Seasons/Spring"], ["Summer", "Wardrobe/Seasons/Summer"], ["Fall", "Wardrobe/Seasons/Fall"], ["Winter", "Wardrobe/Seasons/Winter"]]]
+            ]);
         };
         function addCategory(id, items) { var container = document.getElementById(id); items.forEach(function(item) { var btn = document.createElement('button'); btn.className = 'sub-btn'; btn.innerText = item[0]; container.appendChild(btn); if (item[2]) { btn.onclick = function() { toggleSlots(this.nextElementSibling); }; var subDiv = document.createElement('div'); subDiv.className = 'slot-container'; item[2].forEach(sub => { var subBtn = document.createElement('div'); subBtn.innerHTML = '<button class="sub-btn" style="background:#000" onclick="toggleSlots(this.nextElementSibling)">'+sub[0]+'</button>'; var slots = document.createElement('div'); slots.className = 'slot-container'; for(var i=1; i<=6; i++) slots.innerHTML += `<button class="slot-btn" onclick="send('${sub[1]}','style${i}')">${i}</button>`; subDiv.appendChild(subBtn); subDiv.appendChild(slots); }); container.appendChild(subDiv); } else { btn.onclick = function() { toggleSlots(this.nextElementSibling); }; var div = document.createElement('div'); div.className = 'slot-container'; for(var i=1; i<=6; i++) div.innerHTML += `<button class="slot-btn" onclick="send('${item[1]}','style${i}')">${i}</button>`; container.appendChild(div); } }); }
         function showCategory(id) { document.getElementById('home').style.display = 'none'; document.getElementById(id).style.display = 'block'; }
