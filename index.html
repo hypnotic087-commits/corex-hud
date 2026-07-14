@@ -9,7 +9,6 @@
         .container { position: relative; z-index: 1; max-width: 800px; margin: 2% auto; background: rgba(0, 0, 0, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); }
         h1 { font-size: 20px; text-align: center; color: #fff; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 35px; text-shadow: 0 3px 6px rgba(0,0,0,0.7); cursor: pointer; }
         
-        /* Transparent Black Buttons */
         .menu-btn, .sub-btn, .nude-btn { 
             width: 100%; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.2); 
             color: #fff; padding: 15px; margin-bottom: 8px; text-transform: uppercase; 
@@ -22,12 +21,9 @@
         
         .slot-container { display: none; padding: 10px; text-align: center; }
         .slot-btn { width: 45px; height: 35px; font-size: 12px; background: rgba(0,0,0,0.6); color: #fff; border: 1px solid #777; cursor: pointer; margin: 3px; }
-        .slot-btn:hover { border-color: #fff; box-shadow: var(--glow); }
         
         .content { display: none; }
         .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-        
-        /* Opaque Control Buttons */
         .ctrl-btn { background: rgba(0,0,0,0.7); border: 1px solid #666; color: #fff; padding: 18px; font-size: 12px; cursor: pointer; border-radius: 4px; text-transform: uppercase; opacity: 1; }
     </style>
 </head>
@@ -52,7 +48,7 @@
         <div id="closet" class="content"></div>
         <div id="wardrobe" class="content"></div>
         <div id="controls" class="controls">
-            <button class="ctrl-btn" onclick="showHome()">Back to Home</button>
+            <button class="ctrl-btn" onclick="showHome()">Back</button>
             <button class="ctrl-btn" onclick="send('RemoveLast','detach')">Remove Last Item</button>
         </div>
     </div>
@@ -87,16 +83,19 @@
         }
 
         function toggleSubmenu(btn) {
-            var parent = btn.parentElement;
-            Array.from(parent.children).forEach(child => { if(child !== btn && !child.classList.contains('nude-btn')) child.style.display = 'none'; });
-            btn.nextElementSibling.style.display = 'block';
-            btn.classList.add('active-glow');
+            var sub = btn.nextElementSibling;
+            var isOpen = (sub.style.display === 'block');
+            // Hide other submenus
+            Array.from(btn.parentElement.children).forEach(child => { if(child !== btn && child.className !== 'nude-btn') child.style.display = 'none'; });
+            // Toggle current
+            sub.style.display = isOpen ? 'none' : 'block';
+            if (!isOpen) btn.classList.add('active-glow'); else btn.classList.remove('active-glow');
         }
 
         function toggleOnlySlots(btn) {
-            var parent = btn.parentElement;
-            parent.querySelectorAll('.slot-container').forEach(s => { if(s !== btn.nextElementSibling) s.style.display = 'none'; });
             var slots = btn.nextElementSibling;
+            var parent = btn.parentElement;
+            parent.querySelectorAll('.slot-container').forEach(s => { if(s !== slots) s.style.display = 'none'; });
             slots.style.display = (slots.style.display === 'block') ? 'none' : 'block';
             btn.classList.toggle('active-glow');
         }
