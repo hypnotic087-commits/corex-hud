@@ -4,7 +4,7 @@
     <style>
         :root { --glass: rgba(0, 0, 0, 0.7); --glow: 0 0 15px rgba(255, 255, 255, 0.6); }
         body { margin: 0; padding: 40px; font-family: 'Segoe UI', sans-serif; color: #fff; 
-               background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://i.imgur.com/eBw0k7t.jpeg'); 
+               background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('closet.jpg'); 
                background-size: cover; background-position: center; background-attachment: fixed; min-height: 100vh; }
         .container { position: relative; z-index: 1; max-width: 800px; margin: 2% auto; background: rgba(0, 0, 0, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); }
         h1 { font-size: 20px; text-align: center; color: #fff; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 35px; text-shadow: 0 3px 6px rgba(0,0,0,0.7); cursor: pointer; }
@@ -56,7 +56,43 @@
                 ["Seasons", null, [["Spring", "Wardrobe/Seasons/Spring"], ["Summer", "Wardrobe/Seasons/Summer"], ["Fall", "Wardrobe/Seasons/Fall"], ["Winter", "Wardrobe/Seasons/Winter"]]]
             ]);
         };
-        function addCategory(id, items) { var container = document.getElementById(id); items.forEach(function(item) { var btn = document.createElement('button'); btn.className = 'sub-btn'; btn.innerText = item[0]; container.appendChild(btn); if (item[2]) { btn.onclick = function() { toggleSlots(this.nextElementSibling); }; var subDiv = document.createElement('div'); subDiv.className = 'slot-container'; item[2].forEach(sub => { var subBtn = document.createElement('div'); subBtn.innerHTML = '<button class="sub-btn" style="background:#000" onclick="toggleSlots(this.nextElementSibling)">'+sub[0]+'</button>'; var slots = document.createElement('div'); slots.className = 'slot-container'; for(var i=1; i<=6; i++) slots.innerHTML += `<button class="slot-btn" onclick="send('${sub[1]}','style${i}')">${i}</button>`; subDiv.appendChild(subBtn); subDiv.appendChild(slots); }); container.appendChild(subDiv); } else { btn.onclick = function() { toggleSlots(this.nextElementSibling); }; var div = document.createElement('div'); div.className = 'slot-container'; for(var i=1; i<=6; i++) div.innerHTML += `<button class="slot-btn" onclick="send('${item[1]}','style${i}')">${i}</button>`; container.appendChild(div); } }); }
+        function addCategory(id, items) { 
+            var container = document.getElementById(id); 
+            items.forEach(function(item) { 
+                var btn = document.createElement('button'); 
+                btn.className = 'sub-btn'; 
+                btn.innerText = item[0]; 
+                container.appendChild(btn); 
+                if (item[2]) { 
+                    btn.onclick = function() { toggleSlots(this.nextElementSibling); }; 
+                    var subDiv = document.createElement('div'); 
+                    subDiv.className = 'slot-container'; 
+                    item[2].forEach(sub => { 
+                        var subBtn = document.createElement('button'); 
+                        subBtn.className = 'sub-btn'; 
+                        subBtn.style.background = '#333'; 
+                        subBtn.innerText = sub[0]; 
+                        var slots = document.createElement('div'); 
+                        slots.className = 'slot-container'; 
+                        for(var i=1; i<=6; i++) {
+                            slots.innerHTML += `<button class="slot-btn" onclick="send('${sub[1]}','style${i}')">${i}</button>`;
+                        }
+                        subBtn.onclick = function() { toggleSlots(this.nextElementSibling); }; 
+                        subDiv.appendChild(subBtn); 
+                        subDiv.appendChild(slots); 
+                    }); 
+                    container.appendChild(subDiv); 
+                } else { 
+                    btn.onclick = function() { toggleSlots(this.nextElementSibling); }; 
+                    var div = document.createElement('div'); 
+                    div.className = 'slot-container'; 
+                    for(var i=1; i<=6; i++) {
+                        div.innerHTML += `<button class="slot-btn" onclick="send('${item[1]}','style${i}')">${i}</button>`;
+                    }
+                    container.appendChild(div); 
+                } 
+            }); 
+        }
         function showCategory(id) { document.getElementById('home').style.display = 'none'; document.getElementById(id).style.display = 'block'; }
         function showHome() { var contents = document.getElementsByClassName('content'); for(var i=0; i<contents.length; i++) { contents[i].style.display = 'none'; } document.getElementById('home').style.display = 'block'; }
         function toggleSlots(el) { el.style.display = (el.style.display === 'block') ? 'none' : 'block'; }
