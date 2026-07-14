@@ -2,32 +2,75 @@
 <html>
 <head>
 <style>
-    body { background: #121212; color: #fff; font-family: sans-serif; padding: 10px; }
-    .menu-btn { display: block; width: 100%; background: #333; color: #fff; padding: 12px; margin: 5px 0; text-align: center; text-transform: uppercase; font-size: 12px; font-weight: bold; cursor: pointer; border: 1px solid #555; }
-    .content { display: none; padding: 10px; border: 1px solid #444; margin-bottom: 10px; background: #1a1a1a; }
-    .slot-btn { width: 30px; font-size: 10px; padding: 5px; background: #222; color: #fff; border: 1px solid #444; cursor: pointer; }
+    body { background: #121212; color: #fff; font-family: sans-serif; padding: 10px; margin: 0; }
+    h1 { text-align: center; font-size: 14px; color: #00d4ff; text-transform: uppercase; margin: 10px 0; }
+    .menu-btn { display: block; width: 100%; background: #333; color: #fff; padding: 10px; margin: 2px 0; text-align: center; text-transform: uppercase; font-size: 10px; font-weight: bold; cursor: pointer; border: 1px solid #555; }
+    .content { display: none; padding: 10px; border: 1px solid #444; background: #1a1a1a; margin-bottom: 5px; }
+    .sub-cat { font-size: 11px; color: #aaa; margin-top: 8px; border-bottom: 1px solid #333; padding-bottom: 2px; }
+    .slot-btn { width: 30px; font-size: 9px; padding: 4px; background: #222; color: #fff; border: 1px solid #444; cursor: pointer; margin: 1px; }
 </style>
 </head>
 <body>
 
-    <button class="menu-btn" onclick="document.getElementById('dresser').style.display = (document.getElementById('dresser').style.display === 'block' ? 'none' : 'block')">Dresser</button>
+    <h1>Corex_Sync</h1>
+    
+    <button class="menu-btn" onclick="toggle('dresser')">Dresser</button>
     <div id="dresser" class="content">
-        <strong>Lounge</strong><br>
-        <button class="slot-btn" onclick="send('Dresser/Lounge','style1')">1</button>
-        <button class="slot-btn" onclick="send('Dresser/Lounge','style2')">2</button>
+        <script>
+            create("Lounge", "Dresser/Lounge"); create("Pj's", "Dresser/Pj's");
+            create("Swimwear", "Dresser/Swimwear"); create("Bra's", "Dresser/Undies/Bra's");
+            create("Panties", "Dresser/Undies/Panties"); create("Boxer/Briefs", "Dresser/Undies/BoxerBriefs");
+            create("Lingerie", "Dresser/Undies/Lingerie"); create("Stockings", "Dresser/Undies/Stockings");
+            create("Socks", "Dresser/Undies/Socks");
+        </script>
     </div>
 
-    <button class="menu-btn" onclick="document.getElementById('closet').style.display = (document.getElementById('closet').style.display === 'block' ? 'none' : 'block')">Closet</button>
+    <button class="menu-btn" onclick="toggle('closet')">Closet</button>
     <div id="closet" class="content">
-        <strong>Skirts</strong><br>
-        <button class="slot-btn" onclick="send('Closet/Skirts','style1')">1</button>
-        <button class="slot-btn" onclick="send('Closet/Skirts','style2')">2</button>
+        <script>
+            create("Skirts", "Closet/Skirts"); create("Shorts", "Closet/Shorts");
+            create("Sweaters", "Closet/Sweaters"); create("Long Dresses", "Closet/Dresses/Long");
+            create("Short Dresses", "Closet/Dresses/Short"); create("Dress Shirts", "Closet/Shirts/DressShirts");
+            create("Long Sleeve", "Closet/Shirts/LongSleeve"); create("Short Sleeve", "Closet/Shirts/ShortSleeve");
+            create("Tanks/T's", "Closet/Shirts/TanksTs"); create("Tube Tops", "Closet/Shirts/TubeTops");
+            create("Dress Pants", "Closet/Pants/DressPants"); create("Casual Pants", "Closet/Pants/Casual");
+            create("Jeans", "Closet/Pants/Jeans"); create("Leggings", "Closet/Pants/Leggings");
+        </script>
     </div>
+
+    <button class="menu-btn" onclick="toggle('wardrobe')">Wardrobe</button>
+    <div id="wardrobe" class="content">
+        <script>
+            create("Casual", "Wardrobe/Casual"); create("Club", "Wardrobe/Club");
+            create("Shopping", "Wardrobe/Shopping"); create("Sleep", "Wardrobe/Sleep");
+            create("Roleplay", "Wardrobe/Roleplay"); create("Gowns", "Wardrobe/Formal/Gowns");
+            create("Suits", "Wardrobe/Formal/Suits"); create("Spring", "Wardrobe/Seasons/Spring");
+            create("Summer", "Wardrobe/Seasons/Summer"); create("Fall", "Wardrobe/Seasons/Fall");
+            create("Winter", "Wardrobe/Seasons/Winter");
+        </script>
+    </div>
+
+    <button class="menu-btn" style="border-color:#ff4444;" onclick="send('Nude','remove')">Nude</button>
+    <button class="menu-btn" style="border-color:#ffcc00;" onclick="send('RemoveLast','detach')">Undo Last</button>
+    <button class="menu-btn" onclick="send('RemoveHud','detach')">Remove Hud</button>
 
     <script>
-        function send(part, style) {
-            alert("Command Sent: " + part + "," + style);
+        function toggle(id) { 
+            var el = document.getElementById(id);
+            el.style.display = (el.style.display === 'block') ? 'none' : 'block'; 
+        }
+        function create(n, p) { 
+            document.write('<div class="sub-cat">'+n+'</div>'); 
+            for(let i=1; i<=6; i++) document.write(`<button class="slot-btn" onclick="send('${p}','style${i}')">${i}</button>`); 
+        }
+        function send(part, style) { 
+            var f = document.getElementById('sl_form');
+            f.action = window.location.hash.substring(1);
+            document.getElementById('p_data').value = part + "," + style;
+            f.submit();
         }
     </script>
+    <iframe name="secret_frame" style="display:none;"></iframe>
+    <form id="sl_form" method="POST" target="secret_frame" style="display:none;"><input type="hidden" id="p_data" name="cmd"></form>
 </body>
 </html>
