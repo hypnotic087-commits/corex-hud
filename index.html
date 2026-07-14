@@ -2,36 +2,40 @@
 <html lang="en">
 <head>
     <style>
-        :root { --glass: rgba(0, 0, 0, 0.4); --glow: 0 0 10px rgba(255, 255, 255, 0.5); }
+        :root { --glass: rgba(0, 0, 0, 0.6); --glow: 0 0 10px rgba(255, 255, 255, 0.5); }
         
         body { 
-            margin: 0; padding: 10px; font-family: 'Segoe UI', sans-serif; color: #fff;
-            /* Background setup */
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('closet.jpg'); /* Direct image link */
-            background-size: cover; background-position: center; background-attachment: fixed;
-            min-height: 100vh;
+            margin: 0; padding: 20px; font-family: 'Segoe UI', sans-serif; color: #fff;
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('closet.jpg');
+            background-size: cover; background-position: center; min-height: 100vh;
         }
 
-        /* Ensure content stays on top */
-        .container { position: relative; z-index: 1; }
+        /* 80% Height Container */
+        .container { 
+            position: relative; z-index: 1; 
+            max-width: 600px; margin: 5% auto; 
+            background: rgba(0, 0, 0, 0.4); padding: 20px; 
+            border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);
+        }
 
-        h1 { font-size: 12px; text-align: center; color: #fff; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        h1 { font-size: 14px; text-align: center; color: #fff; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 25px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
         
-        .menu-btn { width: 100%; background: var(--glass); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; padding: 8px; margin-bottom: 5px; text-transform: uppercase; font-size: 9px; cursor: pointer; border-radius: 4px; transition: 0.3s; }
-        .menu-btn:hover, .active { border-color: #fff; box-shadow: var(--glow); background: rgba(255,255,255,0.1); }
+        /* Taller Buttons */
+        .menu-btn { width: 100%; background: var(--glass); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 15px; margin-bottom: 10px; text-transform: uppercase; font-size: 11px; font-weight: bold; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+        .menu-btn:hover, .active { border-color: #fff; box-shadow: var(--glow); background: rgba(255,255,255,0.15); }
         
-        .content { display: none; padding: 10px; margin-bottom: 10px; background: rgba(0,0,0,0.3); border-radius: 4px; }
-        .sub-cat { font-size: 9px; color: #ccc; margin: 8px 0 3px 0; text-transform: uppercase; }
-        .slot-btn { width: 28px; height: 20px; font-size: 9px; background: rgba(0,0,0,0.4); color: #fff; border: 1px solid #555; cursor: pointer; margin: 1px; }
+        .content { display: none; padding: 15px; margin-bottom: 10px; background: rgba(0,0,0,0.5); border-radius: 4px; }
+        .sub-cat { font-size: 10px; color: #ccc; margin: 10px 0 5px 0; text-transform: uppercase; letter-spacing: 1px; }
+        .slot-btn { width: 35px; height: 28px; font-size: 10px; background: rgba(0,0,0,0.5); color: #fff; border: 1px solid #666; cursor: pointer; margin: 2px; }
         .slot-btn:hover { border-color: #fff; box-shadow: var(--glow); }
 
-        .controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 10px; }
-        .ctrl-btn { background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff; padding: 6px; font-size: 8px; cursor: pointer; border-radius: 2px; }
+        .controls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .ctrl-btn { background: rgba(0,0,0,0.6); border: 1px solid #555; color: #fff; padding: 12px; font-size: 9px; cursor: pointer; border-radius: 2px; text-transform: uppercase; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Corex_Sync</h1>
+        <h1>COREX_SYNC</h1>
         
         <button class="menu-btn" onclick="toggle(this, 'dresser')">Dresser</button>
         <div id="dresser" class="content"></div>
@@ -50,7 +54,6 @@
     </div>
 
     <script>
-        // ... (Keep the exact same script from the previous step) ...
         window.onload = function() {
             addContent('dresser', [["Lounge", "Dresser/Lounge"], ["Pj's", "Dresser/Pj's"], ["Swimwear", "Dresser/Swimwear"], ["Bra's", "Dresser/Undies/Bra's"], ["Panties", "Dresser/Undies/Panties"], ["Boxer/Briefs", "Dresser/Undies/BoxerBriefs"], ["Lingerie", "Dresser/Undies/Lingerie"], ["Stockings", "Dresser/Undies/Stockings"], ["Socks", "Dresser/Undies/Socks"]]);
             addContent('closet', [["Skirts", "Closet/Skirts"], ["Shorts", "Closet/Shorts"], ["Sweaters", "Closet/Sweaters"], ["Long Dresses", "Closet/Dresses/Long"], ["Short Dresses", "Closet/Dresses/Short"], ["Dress Shirts", "Closet/Shirts/DressShirts"], ["Long Sleeve", "Closet/Shirts/LongSleeve"], ["Short Sleeve", "Closet/Shirts/ShortSleeve"], ["Tanks/T's", "Closet/Shirts/TanksTs"], ["Tube Tops", "Closet/Shirts/TubeTops"], ["Dress Pants", "Closet/Pants/DressPants"], ["Casual Pants", "Closet/Pants/Casual"], ["Jeans", "Closet/Pants/Jeans"], ["Leggings", "Closet/Pants/Leggings"]]);
