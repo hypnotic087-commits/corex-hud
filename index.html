@@ -7,20 +7,27 @@
         body { 
             margin: 0; padding: 0; 
             font-family: 'Segoe UI', sans-serif; color: #fff; 
-            background: transparent; /* Changed to transparent so HUD background shows */
+            background: transparent;
             min-height: 100vh;
             display: flex; justify-content: center; align-items: center;
         }
         
         .container { 
             width: 70%; max-width: 600px; 
-            height: 500px; /* Fixed height to prevent resizing */
-            overflow-y: auto; /* Adds scrollbar instead of resizing */
-            background: rgba(0, 0, 0, 0.5); padding: 30px; 
+            height: 500px; /* Fixed height to prevent HUD resizing */
+            overflow-y: auto; /* Adds scrollbar if content exceeds height */
+            
+            /* --- IMAGE BACKGROUND --- */
+            background-image: url('closet.jpg'); 
+            background-size: cover; 
+            background-position: center;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay to keep text readable */
+            
+            padding: 30px; 
             border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); 
         }
         
-        /* Custom Scrollbar for better look */
+        /* Scrollbar styling */
         .container::-webkit-scrollbar { width: 6px; }
         .container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
         
@@ -86,7 +93,6 @@
     </div>
 
     <script>
-        // Paths match your folder structure: COREX_SYNC_Hud/Category/Subcategory
         window.onload = function() {
             addCategory('dresser', [["Lounge", "Dresser/Lounge"], ["Pj's", "Dresser/Pj's"], ["Swimwear", "Dresser/Swimwear"], ["Undies", null, [["Bra's", "Dresser/Undies/Bra's"], ["Panties", "Dresser/Undies/Panties"], ["Boxer/Briefs", "Dresser/Undies/BoxerBriefs"], ["Lingerie", "Dresser/Undies/Lingerie"], ["Stockings", "Dresser/Undies/Stockings"], ["Socks", "Dresser/Undies/Socks"]]]]);
             addCategory('closet', [["Skirts", "Closet/Skirts"], ["Shorts", "Closet/Shorts"], ["Sweaters", "Closet/Sweaters"], ["Dresses", null, [["Long", "Closet/Dresses/Long"], ["Short", "Closet/Dresses/Short"]]], ["Shirts", null, [["Dress Shirts", "Closet/Shirts/DressShirts"], ["Long Sleeve", "Closet/Shirts/LongSleeve"], ["Short Sleeve", "Closet/Shirts/ShortSleeve"], ["Tanks/T's", "Closet/Shirts/TanksTs"], ["Tube Tops", "Closet/Shirts/TubeTops"]]], ["Pants", null, [["Slacks", "Closet/Pants/DressPants"], ["Casual", "Closet/Pants/Casual"], ["Jeans", "Closet/Pants/Jeans"], ["Leggings", "Closet/Pants/Leggings"]]]]);
