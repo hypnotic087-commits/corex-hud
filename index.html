@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COREX//SYNC Vanity</title>
     <style>
-        :root { --glass: rgba(0, 0, 0, 0.5); --glow: 0 0 15px rgba(255, 255, 255, 0.6); }
+        /* Defined the color with transparency variables */
+        :root { 
+            --purple-trans: rgba(151, 92, 207, 0.6); 
+            --glow: 0 0 15px rgba(151, 92, 207, 0.6); 
+        }
         
         body { 
             margin: 0; padding: 0; 
@@ -13,20 +17,17 @@
             min-height: 100vh;
             display: flex; justify-content: center; align-items: center;
             position: relative;
-            background: #000; /* Solid black base so it isn't gray */
+            background: #000;
         }
 
-        /* This creates the transparent background image layer */
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* REMOVED the gradient here */
-            background-image: url('black1.jpg');
+            background-image: url('closet.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            /* Adjust transparency here (0.4 = 40% visible) */
             opacity: 0.4; 
             z-index: -1;
         }
@@ -35,16 +36,19 @@
             width: 70%; max-width: 600px; 
             height: 400px;
             overflow-y: auto;
-            background: rgba(0, 0, 0, 0.4); /* Slightly darker background for readability */
+            background: rgba(0, 0, 0, 0.6); 
             padding: 30px; 
-            border-radius: 12px; border: 2px solid #975ccf; 
+            border-radius: 12px; 
+            /* Purple Transparent Border */
+            border: 1px solid var(--purple-trans); 
         }
         
-        .container::-webkit-scrollbar { width: 8px; }
-        .container::-webkit-scrollbar-thumb { background: #975ccf; border-radius: 4px; }
+        .container::-webkit-scrollbar { width: 7px; }
+        /* Purple Transparent Scrollbar */
+        .container::-webkit-scrollbar-thumb { background: rgba(151, 92, 207, 0.5); border-radius: 3px; }
         
         h1 { 
-            font-size: 28px; text-align: center; color: #975ccf; 
+            font-size: 28px; text-align: center; color: #fff; 
             letter-spacing: 4px; text-transform: uppercase; 
             margin: 0 0 30px 0; 
             cursor: pointer; 
@@ -52,32 +56,37 @@
             font-weight: 300; 
         }
         
-        /* Buttons */
+        /* Menu Buttons */
         .menu-btn, .sub-btn, .nude-btn, .remove-hud-btn { 
             display: block; width: 70%; margin: 0 auto 10px auto; 
-            background: rgba(0, 0, 0, 0.5); border: 1px solid #975ccf; 
+            background: rgba(0, 0, 0, 0.5); 
+            border: 1px solid var(--purple-trans); 
             color: #fff; padding: 20px 10px; text-transform: uppercase; 
             font-family: 'Courier New', Courier, monospace;
-            font-size: 23px; font-weight: 500; letter-spacing: 2px; cursor: pointer; border-radius: 6px; 
+            font-size: 25px; font-weight: 500; letter-spacing: 2px; cursor: pointer; border-radius: 6px; 
             opacity: 0.7; transition: 0.3s; 
         }
 
+        /* Slot Buttons */
         .slot-btn { 
             width: 45px; height: 35px; font-size: 14px; font-family: 'Courier New', Courier, monospace; 
-            background: rgba(0,0,0,0.6); color: #fff; border: 1px solid #975ccf; 
+            background: rgba(0,0,0,0.6); color: #fff; 
+            border: 1px solid var(--purple-trans); 
             cursor: pointer; margin: 3px; 
             transition: box-shadow 0.5s ease, border-color 0.5s ease, opacity 0.3s;
         }
         
         .menu-btn:hover, .sub-btn:hover, .nude-btn:hover, .remove-hud-btn:hover, .slot-btn:hover { opacity: 1; }
         
-        .active-glow { border-color: #975ccf !important; box-shadow: var(--glow) !important; opacity: 1 !important; }
+        /* Glow style updated to match purple */
+        .active-glow { border-color: #fff !important; box-shadow: var(--glow) !important; opacity: 1 !important; }
         
         .slot-container, .submenu-items { display: none; padding: 10px; text-align: center; }
+        
         .content { display: none; }
         .controls { display: none; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
         
-        .ctrl-btn { background: rgba(0,0,0,0.7); border: 1px solid #666; color: #975ccf; padding: 18px; font-size: 12px; font-family: 'Courier New', Courier, monospace; cursor: pointer; border-radius: 4px; text-transform: uppercase; opacity: 1; }
+        .ctrl-btn { background: rgba(0,0,0,0.7); border: 1px solid var(--purple-trans); color: #fff; padding: 18px; font-size: 12px; font-family: 'Courier New', Courier, monospace; cursor: pointer; border-radius: 4px; text-transform: uppercase; opacity: 1; }
     </style>
 </head>
 <body>
